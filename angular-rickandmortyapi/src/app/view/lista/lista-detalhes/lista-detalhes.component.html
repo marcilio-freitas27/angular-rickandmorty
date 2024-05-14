@@ -1,0 +1,21 @@
+
+<div class="card flex justify-content-center">
+
+  <div header="Advanced Card" subheader="Card Subheader" [style]="{ width: '360px' }">
+    <div>
+      <h2>{{character.name}}</h2>
+      <img style="border-radius:50%;" alt="Card" [src]="character.image" width="100px" height="100px"/>
+    <div>
+    <li>
+      <ul>{{character.status}}</ul>
+      <ul>{{character.species}}</ul>
+      <ul>{{character.type}}</ul>
+      <ul>{{character.gender}}</ul>
+      <ul>{{character.origin}}</ul>
+      <ul>{{character.location}}</ul>
+      <ul>{{character.url}}</ul>
+      <ul>{{character.created}}</ul>
+    </li>
+    <button pButton label="Cancel" styleClass="p-button-raised"></button>
+  </div>
+</div>
