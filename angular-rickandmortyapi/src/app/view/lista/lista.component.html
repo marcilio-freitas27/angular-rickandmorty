@@ -63,27 +63,23 @@
 <div class="mb-3">
   <p-panel header="Filtro">
     <div class="d-flex">
-      <div class="m-1">
-        <ng-select name="ativo" [(ngModel)]="filtro.genero" [items]="generos" [multiple]="false"
-            bindLabel="ativo" placeholder="Ativo" data-live-search="true">
+      <div class="m-2 w-50 custom">
+        <ng-select name="genero" [(ngModel)]="filtro.genero" [items]="generos" [multiple]="false" placeholder="Genero" data-live-search="true">
         </ng-select>
       </div>
-      <span class="m-1">
-        <ng-select name="ativo" [(ngModel)]="filtro.genero" [items]="generos" [multiple]="false"
-        bindLabel="ativo" placeholder="Ativo" data-live-search="true">
+      <span class="m-2 w-50">
+        <ng-select name="estado" [(ngModel)]="filtro.estado" [items]="estados" [multiple]="false" placeholder="Estado" data-live-search="true">
     </ng-select>
-      </span>
-      <span class="m-1">
-        <ng-select name="ativo" [(ngModel)]="filtro.genero" [items]="generos" [multiple]="false"
-            bindLabel="ativo" placeholder="Ativo" data-live-search="true">
+      </span> 
+      <span class="m-2 w-50">
+        <ng-select name="especie" [(ngModel)]="filtro.especie" [items]="especies" [multiple]="false" placeholder="Especie" data-live-search="true">
         </ng-select>
       </span>
-      <span class="m-1">
-        <ng-select name="ativo" [(ngModel)]="filtro.genero" [items]="generos" [multiple]="false"
-        bindLabel="ativo" placeholder="Ativo" data-live-search="true">
+      <span class="m-2 w-50">
+        <ng-select name="tipo" [(ngModel)]="filtro.tipo" [items]="tipos" [multiple]="false" placeholder="Tipos" data-live-search="true">
     </ng-select>
       </span>
-      <div class="m-1">
+      <div class="m-2 w-50">
         <button pButton label="Buscar" styleClass="p-button-raised"
         [disabled]="false" (click)="buscarPersonagensFiltro()"></button>
       </div>
@@ -92,15 +88,10 @@
 </div>
 
 <div class="card">
-  <p-dataView #dv [value]="characters" [rows]="5" [paginator]="true" [layout]="layout">
-    <ng-template pTemplate="header">
-      <div class="flex justify-content-end" >
-        <p-dataViewLayoutOptions (changelayout)="layout"></p-dataViewLayoutOptions>
-    </div>
-  </ng-template>
+  <p-dataView #dv [value]="characters" [rows]="5" [paginator]="true">
     <ng-template let-characters pTemplate="listItem">
         <div class="col-12">
-            <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4">
+            <div class="flex flex-column xl:flex-row p-4 gap-4">
                 <img class="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round" [src]="characters.image" [alt]="characters.name" />
                 <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
                     <div class="flex flex-column align-items-center sm:align-items-start gap-3">
@@ -114,20 +105,6 @@
             </div>
         </div>
     </ng-template>
-    <ng-template let-characters pTemplate="gridItem">
-      <div class="col-12 sm:col-6 lg:col-12 xl:col-4 p-2">
-          <div class="p-4 border-1 surface-border surface-card border-round">
-              <div class="flex flex-column align-items-center gap-3 py-5">
-                  <img class="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round" [src]="characters.image" [alt]="characters.name" />
-                  <div class="text-2xl font-bold">{{ characters.name }}</div>
-              </div>
-              <div class="flex align-items-center justify-content-between">
-                <button [routerLink]="['/character',buscarInformacoesPorIf(characters.id)]" pButton label="Ver dados" styleClass="p-button-raised"
-                [disabled]="false"></button>
-              </div>
-          </div>
-      </div>
-  </ng-template>
   </p-dataView>
 </div>
 

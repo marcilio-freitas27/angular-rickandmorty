@@ -32,6 +32,9 @@ export class ListaComponent implements OnInit {
     this.basicOptions = {};
     this.genero = [];
     this.generos = [];
+    this.estados = [];
+    this.especies = [];
+    this.tipos = [];
     this.estado = [];
     this.filtro = {
       genero: "",
@@ -81,11 +84,10 @@ export class ListaComponent implements OnInit {
   }
 
   buscarPersonagensFiltro(){
-    this.buscarPersonagens();
     console.log('filtro',this.filtro);
     localStorage.setItem('buscarPersonagensFilter', JSON.stringify(this.filtro));
     console.log('filtro',this.filtro);
-    if(this.filtro.genero === "MALE"){
+    if(this.filtro.genero === "Male"){
       this.characters = this.characters.filter(char => char.gender === "Male");
     }else {
       this.characters = this.characters.filter(char => char.gender === "Female");
@@ -149,7 +151,7 @@ export class ListaComponent implements OnInit {
       }
     }
     this.genero.push(male,female, unknown);
-    this.generos = ["MALE","FEMALE","UNKNOW"];
+    this.generos = ["Male","Female","Unknow"];
   }
 
   buscarEstados(){
@@ -167,6 +169,7 @@ export class ListaComponent implements OnInit {
       }
     }
     this.estado.push(alive,dead, unknown);
+    this.estados = ["Alive", "Dead", "Unknown"];
   }
 
   buscarEspecies(){
