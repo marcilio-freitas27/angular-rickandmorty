@@ -63,14 +63,14 @@
 <div class="mb-3">
   <p-panel header="Filtro">
     <div class="d-flex">
-      <div class="m-2 w-50 custom">
+      <div class="m-2 w-50">
         <ng-select name="genero" [(ngModel)]="filtro.genero" [items]="generos" [multiple]="false" placeholder="Genero" data-live-search="true">
         </ng-select>
       </div>
       <span class="m-2 w-50">
         <ng-select name="estado" [(ngModel)]="filtro.estado" [items]="estados" [multiple]="false" placeholder="Estado" data-live-search="true">
     </ng-select>
-      </span> 
+      </span>
       <span class="m-2 w-50">
         <ng-select name="especie" [(ngModel)]="filtro.especie" [items]="especies" [multiple]="false" placeholder="Especie" data-live-search="true">
         </ng-select>
@@ -90,7 +90,7 @@
 <div class="card">
   <p-dataView #dv [value]="characters" [rows]="5" [paginator]="true">
     <ng-template let-characters pTemplate="listItem">
-        <div class="col-12">
+        <div class="col-2">
             <div class="flex flex-column xl:flex-row p-4 gap-4">
                 <img class="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round" [src]="characters.image" [alt]="characters.name" />
                 <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">

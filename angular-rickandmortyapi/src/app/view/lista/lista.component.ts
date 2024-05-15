@@ -46,8 +46,6 @@ export class ListaComponent implements OnInit {
 
   ngOnInit(){
     this.buscarPersonagens();
-
-
     this.basicOptions = {
       plugins: {
           legend: {
@@ -84,13 +82,16 @@ export class ListaComponent implements OnInit {
   }
 
   buscarPersonagensFiltro(){
-    console.log('filtro',this.filtro);
     localStorage.setItem('buscarPersonagensFilter', JSON.stringify(this.filtro));
-    console.log('filtro',this.filtro);
-    if(this.filtro.genero === "Male"){
-      this.characters = this.characters.filter(char => char.gender === "Male");
+    let gender = this.characters.filter(char => char.gender === this.filtro.genero);
+    console.log(gender)
+    if(gender ){
+      this.characters = this.characters.filter(char => char.gender === this.filtro.genero);
     }else {
-      this.characters = this.characters.filter(char => char.gender === "Female");
+      this.characters = [];
+      this.generos = [];
+      this.buscarPersonagens();
+
     }
   }
   buscarPersonagens(){
@@ -98,8 +99,9 @@ export class ListaComponent implements OnInit {
       {
         next: (data: any) => {
           this.characters = data.results;
-          this.buscarGeneros();
+          this.generos = ["Male","Female","Unknown"];
           let gender = this.genero;
+          this.buscarGeneros();
           this.basicData = {
             labels: ["Male", "Female", "Unknown"],
             datasets: [
@@ -112,8 +114,9 @@ export class ListaComponent implements OnInit {
                 }
             ]
           };
-          this.buscarEstados();
+          this.estados = ["Alive", "Dead", "Unknown"];
           let status = this.estado;
+          this.buscarEstados();
           this.basicDataStatus = {
             labels: ["Alive", "Dead", "Unknown"],
             datasets: [
@@ -151,7 +154,6 @@ export class ListaComponent implements OnInit {
       }
     }
     this.genero.push(male,female, unknown);
-    this.generos = ["Male","Female","Unknow"];
   }
 
   buscarEstados(){
@@ -169,7 +171,6 @@ export class ListaComponent implements OnInit {
       }
     }
     this.estado.push(alive,dead, unknown);
-    this.estados = ["Alive", "Dead", "Unknown"];
   }
 
   buscarEspecies(){

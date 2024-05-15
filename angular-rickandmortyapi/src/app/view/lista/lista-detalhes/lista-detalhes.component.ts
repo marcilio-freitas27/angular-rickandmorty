@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Character } from 'src/app/models/character.model';
 import { ApiService } from 'src/app/services/api.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-lista-detalhes',
@@ -15,7 +16,8 @@ export class ListaDetalhesComponent implements OnInit {
 
   constructor(
     private api: ApiService,
-    private active: ActivatedRoute
+    private active: ActivatedRoute,
+    private location: Location
   ) {
       this.character = {
         id: 1,
@@ -55,6 +57,10 @@ export class ListaDetalhesComponent implements OnInit {
         }
       }
     )
+  }
+
+  voltar(){
+    this.location.back();
   }
 
 }

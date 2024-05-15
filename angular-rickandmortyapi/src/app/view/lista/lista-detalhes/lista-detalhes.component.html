@@ -1,21 +1,26 @@
 
-<div class="card flex justify-content-center">
-
-  <div header="Advanced Card" subheader="Card Subheader" [style]="{ width: '360px' }">
-    <div>
-      <h2>{{character.name}}</h2>
-      <img style="border-radius:50%;" alt="Card" [src]="character.image" width="100px" height="100px"/>
-    <div>
-    <li>
-      <ul>{{character.status}}</ul>
-      <ul>{{character.species}}</ul>
-      <ul>{{character.type}}</ul>
-      <ul>{{character.gender}}</ul>
-      <ul>{{character.origin}}</ul>
-      <ul>{{character.location}}</ul>
-      <ul>{{character.url}}</ul>
-      <ul>{{character.created}}</ul>
-    </li>
-    <button pButton label="Cancel" styleClass="p-button-raised"></button>
+<body>
+  <div class="card w-50">
+    <div class="card-header">
+      <h5 class="card-title">{{character.name}}</h5>
+    </div>
+    <div class="card-body">
+      <img style="border-radius:50%;" alt="Card" [src]="character.image" width="170px" height="170px"/>
+      <div class="card-text" style="float:right;">
+        <ul>
+          <li><strong>Estado: </strong>{{character.status}}</li>
+          <li><strong>Espécie: </strong>{{character.species}}</li>
+          <li>{{character.type}}</li>
+          <li><strong>Gênero: </strong>{{character.gender}}</li>
+          <li>{{character.origin}}</li>
+          <li>{{character.location}}</li>
+          <li><strong>Episódio: </strong>{{character.url}}</li>
+          <li><strong>Created: </strong>{{character.created}}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-footer" style="float:right;">
+      <button class="btn btn-primary rounded" (click)="voltar()">Voltar</button>
+    </div>
   </div>
-</div>
+</body>

@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
+@import "~@ng-select/ng-select/themes/default.theme.css";
 
 html {
   font-size: 14px;
@@ -24,17 +25,9 @@ body {
 }
 
 
-.ng-select.custom {
-    border:0px;
-    min-height: 0px;
-    border-radius: 0;
-}
-.ng-select.custom .ng-select-container  {            
-    min-height: 0px;
-    border-radius: 0;
+.ng-select {
+  border:0px !important;
+  min-height: 0px !important;
+  border-radius: 0 !important;
 }
 
-.ng-select.custom ::ng-deep .ng-select-container  {            
-  min-height: 0px;
-  border-radius: 0;
-}
