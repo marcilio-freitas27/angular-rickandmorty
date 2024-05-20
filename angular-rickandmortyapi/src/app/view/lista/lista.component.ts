@@ -34,10 +34,13 @@ export class ListaComponent implements OnInit {
     this.estados = [];
     this.especies = [];
     this.tipos = [];
-    if(localStorage.getItem('buscarPersonagensFilter') != null){
-      this.filtro = JSON.parse(localStorage.getItem('buscarPersonagensFilter') || "");
+    this.filtro = {
+      genero: "",
+      estado: "",
+      especie: "",
+      tipo: "",
     }
-   
+
     this.dadosFiltro = [this.filtro]
   }
 
