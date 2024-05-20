@@ -1,9 +1,9 @@
-import { OriginCharacter } from './../../../models/origin-character.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Character } from 'src/app/models/character.model';
 import { ApiService } from 'src/app/services/api.service';
 import { Location } from '@angular/common';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-lista-detalhes',
@@ -17,7 +17,8 @@ export class ListaDetalhesComponent implements OnInit {
   constructor(
     private api: ApiService,
     private active: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private loginService: LoginService
   ) {
       this.character = {
         id: 1,
@@ -42,8 +43,13 @@ export class ListaDetalhesComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.buscarUsuarioLogado();
     let id = this.active.snapshot.paramMap.get('id');
     this.buscarInformacoesPorId(Number(id))
+  }
+
+  buscarUsuarioLogado(){
+    return this.loginService.buscarUsuario();
   }
 
   buscarInformacoesPorId(id: number){

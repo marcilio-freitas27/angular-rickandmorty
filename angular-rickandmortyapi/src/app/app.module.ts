@@ -17,15 +17,25 @@ import {CardModule} from 'primeng/card';
 import { SharedModule } from 'primeng/api';
 import { ChartModule } from 'primeng/chart';
 import { PanelModule } from 'primeng/panel';
+import { CarouselModule } from 'primeng/carousel';
+import { TooltipModule } from 'primeng/tooltip';
+import { TableModule } from 'primeng/table';
 
 import { ListaComponent } from './view/lista/lista.component';
 
+import { LoginComponent } from './view/login/login.component';
+import { MenuComponent } from './view/menu/menu.component';
+
 import { NgSelectModule } from '@ng-select/ng-select';
+import { ListaDetalhesComponent } from './view/lista/lista-detalhes/lista-detalhes.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListaComponent
+    ListaComponent,
+    LoginComponent,
+    ListaDetalhesComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +53,11 @@ import { NgSelectModule } from '@ng-select/ng-select';
     FormsModule,
     ReactiveFormsModule,
     PanelModule,
-    NgSelectModule
+    NgSelectModule,
+    CarouselModule,
+    TooltipModule,
+    TableModule
+
   ],
   providers: [DataViewLayoutOptions],
   bootstrap: [AppComponent]

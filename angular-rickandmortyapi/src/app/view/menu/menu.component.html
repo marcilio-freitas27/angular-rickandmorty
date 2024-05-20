@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg btn-color">
+  <div class="container-fluid">
+    <a class="navbar-brand disabled">
+      <img class="rounded-image" src="../../../assets/images/ng-rick-morty-sem-fundo.png" alt="Bootstrap" width="50" height="50">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <form class="d-flex" role="search">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="text-black nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Menu
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="text-black dropdown-item disabled" href="#">{{ usuarioLogado }}</a></li>
+              <li><hr class="text-black dropdown-divider"></li>
+              <li><a class="text-black dropdown-item" href="#" (click)="logout()" >Sair</a></li>
+            </ul>
+          </li>
+        </ul>
+      </form>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="text-black nav-link active" aria-current="page" href="#">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="text-black nav-link active" aria-current="page" href="#">Personagens</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

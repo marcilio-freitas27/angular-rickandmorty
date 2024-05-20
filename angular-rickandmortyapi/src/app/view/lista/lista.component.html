@@ -1,110 +1,112 @@
 
-<div class="mb-3">
-  <p-panel header="Dashboard">
-    <div class="card shadow-2">
-      <div class="d-flex">
-        <div class="m-3 w-75 text-center">
+<div class="body">
+  <div class="m-3">
+    <p-panel header="Dashboard" [toggleable]="true">
+      <div class="card shadow-2">
+        <div class="d-flex dash">
+          <div class="m-3 w-75 text-center">
+            <p-card header="Personagens" styleClass="bg bg-info">
+                <h2 class="m-0 text-center">
+                  {{characters.length}}
+                </h2>
+            </p-card>
+          </div>
+          <div class="m-3 w-75 text-center">
+            <p-card header="Tipos de Gênero" styleClass="bg bg-success text-white">
+                <h2 class="m-0 text-center">
+                  {{genero.length}}
+                </h2>
+            </p-card>
+          </div>
+          <div class="m-3 w-75 text-center">
+            <p-card header="Tipos de Estado" styleClass="bg bg-danger text-white">
+                <h2 class="m-0 text-center">
+                  {{estado.length}}
+                </h2>
+            </p-card>
+          </div>
+          <div class="m-3 w-75 text-center">
+            <p-card header="Tipos de Espécies" styleClass="bg bg-warning">
+                <h2 class="m-0 text-center">
+                  {{especie.length}}
+                </h2>
+            </p-card>
+          </div>
+          <div class="m-3 w-75 text-center">
+            <p-card header="Tipos" styleClass="bg bg-secondary text-white">
+                <h2 class="m-0 text-center">
+                  {{tipo.length}}
+                </h2>
+            </p-card>
+          </div>
+        </div>
+      </div>
+      <div class="card shadow-2">
+        <div class="d-flex chart-responsive">
+          <div class="chart-size">
+            <p-chart type="pie" [data]="basicData" [options]="basicOptions" class="chart"></p-chart>
+          </div>
+          <div class="chart-size">
+            <p-chart type="pie" [data]="basicDataStatus" [options]="basicOptions" class="chart"></p-chart>
+          </div>
+          <div class="chart-size">
+            <p-chart type="doughnut" [data]="basicDataEspecies" [options]="basicOptions" class="chart"></p-chart>
+          </div>
+          <div class="chart-size">
+            <p-chart type="doughnut" [data]="basicDataTipos" [options]="basicOptions" class="chart"></p-chart>
+          </div>
+        </div>
+      </div>
+    </p-panel>
+  </div>
 
-          <p-card header="Personagens" styleClass="bg bg-info text-white">
-              <h2 class="m-0 text-center">
-                {{characters.length}}
-              </h2>
-          </p-card>
+  <div class="m-3">
+    <p-panel header="Filtro" [toggleable]="true">
+        <div class="gap-10 p-fluid">
+          <div class="d-flex dash">
+            <div class="m-2 w-50">
+              <ng-select name="genero" [(ngModel)]="filtro.genero" [items]="generos" [multiple]="false" placeholder="Genero" data-live-search="true">
+              </ng-select>
+            </div>
+            <div class="m-2 w-50">
+              <ng-select name="estado" [(ngModel)]="filtro.estado" [items]="estados" [multiple]="false" placeholder="Estado" data-live-search="true">
+          </ng-select>
+            </div>
+            <div class="m-2 w-50">
+              <ng-select name="especie" [(ngModel)]="filtro.especie" [items]="especies" [multiple]="false" placeholder="Especie" data-live-search="true">
+              </ng-select>
+            </div>
+            <div class="m-2 w-50">
+              <ng-select name="tipo" [(ngModel)]="filtro.tipo" [items]="tipos" [multiple]="false" placeholder="Tipos" data-live-search="true">
+          </ng-select>
+            </div>
+            <div class="m-1 w-50">
+              <button pButton label="Buscar" class="btn-color"
+              [disabled]="false" (click)="personagensFiltrados(characters, filtro)"></button>
+            </div>
+          </div>
         </div>
-        <div class="m-3 w-75 text-center">
-          <p-card header="Tipos de Gênero" styleClass="bg bg-success text-white">
-              <h2 class="m-0 text-center">
-                {{genero.length}}
-              </h2>
-          </p-card>
-        </div>
-        <div class="m-3 w-75 text-center">
-          <p-card header="Tipos de Estado" styleClass="bg bg-danger text-white">
-              <h2 class="m-0 text-center">
-                {{estado.length}}
-              </h2>
-          </p-card>
-        </div>
-        <div class="m-3 w-75 text-center">
-          <p-card header="Tipos de Espécies" styleClass="bg bg-warning">
-              <h2 class="m-0 text-center">
-                {{genero.length}}
-              </h2>
-          </p-card>
-        </div>
-        <div class="m-3 w-75 text-center">
-          <p-card header="Tipos" styleClass="bg bg-secondary text-white">
-              <h2 class="m-0 text-center">
-                {{genero.length}}
-              </h2>
-          </p-card>
-        </div>
-      </div>
-    </div>
-    <div class="card shadow-2">
-      <div class="d-flex">
-        <div class="m-2 w-50">
-          <p-chart type="bar" [data]="basicData" [options]="basicOptions" width="300px" height="300px"></p-chart>
-        </div>
-        <div class="m-2 w-50">
-          <p-chart type="pie" [data]="basicDataStatus" [options]="basicOptions" width="300px" height="300px"></p-chart>
-        </div>
-        <div class="m-2 w-50">
-          <p-chart type="doughnut" [data]="basicData" [options]="basicOptions" width="300px" height="300px"></p-chart>
-        </div>
-        <div class="m-2 w-50">
-          <p-chart type="line" [data]="basicData" [options]="basicOptions" width="300px" height="300px"></p-chart>
-        </div>
-      </div>
-    </div>
-  </p-panel>
-</div>
+      </p-panel>
+  </div>
 
-<div class="mb-3">
-  <p-panel header="Filtro">
-    <div class="d-flex">
-      <div class="m-2 w-50">
-        <ng-select name="genero" [(ngModel)]="filtro.genero" [items]="generos" [multiple]="false" placeholder="Genero" data-live-search="true">
-        </ng-select>
-      </div>
-      <span class="m-2 w-50">
-        <ng-select name="estado" [(ngModel)]="filtro.estado" [items]="estados" [multiple]="false" placeholder="Estado" data-live-search="true">
-    </ng-select>
-      </span>
-      <span class="m-2 w-50">
-        <ng-select name="especie" [(ngModel)]="filtro.especie" [items]="especies" [multiple]="false" placeholder="Especie" data-live-search="true">
-        </ng-select>
-      </span>
-      <span class="m-2 w-50">
-        <ng-select name="tipo" [(ngModel)]="filtro.tipo" [items]="tipos" [multiple]="false" placeholder="Tipos" data-live-search="true">
-    </ng-select>
-      </span>
-      <div class="m-2 w-50">
-        <button pButton label="Buscar" styleClass="p-button-raised"
-        [disabled]="false" (click)="buscarPersonagensFiltro()"></button>
-      </div>
-    </div>
-  </p-panel>
-</div>
-
-<div class="card">
-  <p-dataView #dv [value]="characters" [rows]="5" [paginator]="true">
-    <ng-template let-characters pTemplate="listItem">
-        <div class="col-2">
-            <div class="flex flex-column xl:flex-row p-4 gap-4">
-                <img class="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round" [src]="characters.image" [alt]="characters.name" />
-                <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
-                    <div class="flex flex-column align-items-center sm:align-items-start gap-3">
-                        <div class="text-2xl font-bold text-900">{{ characters.name }}</div>
-                    </div>
-                    <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
-                        <span class="text-2xl font-semibold"></span>
-                        <button [routerLink]="['/character',buscarInformacoesPorIf(characters.id)]" pButton label="Ver dados" styleClass="p-button-raised" [disabled]="false"></button>
+  <div class="m-3">
+    <p-panel header="Personagens" [toggleable]="true">
+      <p-carousel [value]="filteredCharacters" [numVisible]="3" [numScroll]="3" [circular]="true" autoPlayInterval="3000" [responsiveOptions]="responsiveOptions">
+        <ng-template let-characters pTemplate="item">
+            <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
+                <div class="mb-3">
+                    <img [src]="characters.image" [alt]="characters.name" class="w-6 shadow-2" />
+                </div>
+                <div>
+                    <h4 class="mb-1">{{ characters.name }}</h4>
+                    <div class="car-buttons mt-5">
+                        <button pButton class="btn-color" [routerLink]="['/character',buscarInformacoesPorIf(characters.id)]" type="button" styleClass="p-button p-button-rounded mr-2" icon="pi pi-search" pTooltip="Ver informações do personagem" tooltipPosition="top"></button>
                     </div>
                 </div>
             </div>
-        </div>
-    </ng-template>
-  </p-dataView>
+        </ng-template>
+      </p-carousel>
+    </p-panel>
+  </div>
 </div>
 

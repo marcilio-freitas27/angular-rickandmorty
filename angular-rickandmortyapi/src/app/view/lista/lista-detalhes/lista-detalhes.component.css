@@ -1,5 +1,41 @@
 
 body{
-  height: 570px;
-  background-image: url("../../../../assets/images/rick-morty-background.png");
+  background:url("../../../../assets/images/rick-morty-background.png")repeat center center fixed;
+  background-size: contain;
+  color:#fff;
+  width: 100%;
+  height: 100vh;
 }
+
+.card-image{
+  border-radius:50%;
+  width: 170px;
+  height: 170px;
+}
+
+.card-float-left{
+  float: left;
+}
+
+.card-float-right{
+  float: right;
+}
+
+@media(max-width: 1200px){
+  .card-body{
+    display: flex;
+    justify-content: space-evenly;
+  }
+}
+
+@media(max-width: 640px){
+  .card-body{
+    display: grid;
+    justify-content: center;
+  }
+}
+
+button{
+  font-weight: bold;
+}
+

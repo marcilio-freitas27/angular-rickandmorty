@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LoginService } from './services/login.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent{
+
   title = 'angular-rickandmortyapi';
+  usuarioLogado:any;
+  constructor(private loginService: LoginService){
+    this.usuarioLogado = this.buscarUsuario();
+  }
+
+  ngOnInit(){
+
+  }
+
+  buscarUsuario(){
+    return this.loginService.buscarUsuario();
+  }
 }

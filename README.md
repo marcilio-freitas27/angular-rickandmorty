@@ -67,17 +67,20 @@ angular-rickandmortyapi/
 │   │   │       └── menu.component.css
 │   │   ├── services/
 │   │   │   ├── api.service.ts
-|   |   |   └── lista.service.ts
+│   │   │   ├── lista.service.ts
+│   │   │   └── login.guard.ts
 │   │   ├── models/
 |   |   |   ├── characters.model.ts
 │   │   │   ├── lista.model.ts
 │   │   │   ├── usuario.model.ts
-│   │   │   └── ...
+│   │   ├── util/
+│   │   │   └── chart.util.ts
 │   │   ├── guards/
 │   │   │   └── auth.guard.ts
 │   │   ├── app-routing.module.ts
 │   │   ├── app.component.html
 │   │   ├── app.component.ts
+│   │   ├── app.module.ts
 │   │   └── app.component.css
 │   ├── assets/
 │   │   ├── images/
@@ -116,18 +119,8 @@ angular-rickandmortyapi/
     - lista-detalhes.component.ts
     - lista-detalhes.component.cs
 
-### 3\. Barra de Busca (lista busca)
 
-- **Descrição**: Componente de busca global para filtrar a listagem ativa.
-- **Funcionalidades**:
-    - Barra de busca global
-    - Filtro da listagem ativa
-- **Arquivos**:
-    - lista-busca.component.html
-    - lista-busca.component.ts
-    - lista-busca.component.css
-
-### 4\. Menu (Menu)
+### 3\. Menu (Menu)
 
 - **Descrição**: Componente de navegação para a aplicação.
 - **Funcionalidades**:
@@ -148,11 +141,13 @@ angular-rickandmortyapi/
 - **Arquivos**:
     - api.service.ts
     - lista.service.ts
+    - login.service.ts
 
 ## Modelos
 
 - **Characters Model**: Modelo para os personagens
-- **lista Model**: Modelo para os itens da listagem
+- **Location Character Model**: Modelo para a localização do personagem
+- **Origin Character Model**: Modelo para a origem do personagem
 - **User Model**: Modelo para os dados do usuário logado
 
 ## Rotas
@@ -160,7 +155,6 @@ angular-rickandmortyapi/
 - **"/"**: Página inicial (dashboard)
 - **"/characters/:id"**: Página de um dos personagens de Rick and Morty
 - **"/login"**: Página de login
-- **"/profile"**: Página de perfil do usuário
 
 ## Guardas de Rota
 

@@ -1,26 +1,30 @@
 
 <body>
-  <div class="card w-50">
-    <div class="card-header">
-      <h5 class="card-title">{{character.name}}</h5>
-    </div>
-    <div class="card-body">
-      <img style="border-radius:50%;" alt="Card" [src]="character.image" width="170px" height="170px"/>
-      <div class="card-text" style="float:right;">
-        <ul>
-          <li><strong>Estado: </strong>{{character.status}}</li>
-          <li><strong>Espécie: </strong>{{character.species}}</li>
-          <li>{{character.type}}</li>
-          <li><strong>Gênero: </strong>{{character.gender}}</li>
-          <li>{{character.origin}}</li>
-          <li>{{character.location}}</li>
-          <li><strong>Episódio: </strong>{{character.url}}</li>
-          <li><strong>Created: </strong>{{character.created}}</li>
-        </ul>
+  <div class="p-5">
+      <div class="card w-50 m-auto">
+        <div class="card-header">
+          <h5 class="card-title">{{character.name}}</h5>
+        </div>
+        <div class="card-body">
+          <img class="card-image" alt="Card" [src]="character.image"/>
+          <div class="card-text card-float-right">
+            <ul>
+              <li><strong>Estado: </strong>{{character.status}}</li>
+              <li><strong>Espécie: </strong>{{character.species}}</li>
+              <li><strong>Tipo: </strong>{{character.type}}</li>
+              <li><strong>Gênero: </strong>{{character.gender}}</li>
+              <li><strong>Origem: </strong>{{character.origin.name}}</li>
+              <li><strong>Localização: </strong>{{character.location.name}}</li>
+              <li><strong>Episódios: </strong>{{character.episode.length}}</li>
+              <li><strong>Created: </strong>{{character.created.substring(0,10)}}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="card-float-right">
+            <button class="btn btn-color rounded text-black active" (click)="voltar()">Voltar</button>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="card-footer" style="float:right;">
-      <button class="btn btn-primary rounded" (click)="voltar()">Voltar</button>
-    </div>
   </div>
 </body>
