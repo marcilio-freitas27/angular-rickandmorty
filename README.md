@@ -12,6 +12,12 @@ Este projeto consiste na implementação de um dashboard em Angular 15 que se co
 - Ng-select 10
 - Chart.js 4
 
+## Justificativa
+
+O PrimeNG foi escolhido por ser uma tecnologia desenvolvida para o framework Angular
+e por eu já usar ela no trabalho. De igual modo, o Chart.js e o Ng-select. Tive problemas
+com o p-dropdown e por isso a escolha de um select.
+
 ## Configuração do Ambiente de Desenvolvimento
 
 ### Instalação do Angular 15
