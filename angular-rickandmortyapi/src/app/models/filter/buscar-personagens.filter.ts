@@ -1,6 +1,6 @@
-export interface BuscarPersonagensFilter{
-  genero: string;
-  estado: string;
-  especie: string;
-  tipo: string;
+export class BuscarPersonagensFilter{
+  genero!: string;
+  estado!: string;
+  especie!: string;
+  tipo!: string;
 }

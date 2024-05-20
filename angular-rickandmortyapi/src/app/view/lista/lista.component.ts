@@ -34,24 +34,18 @@ export class ListaComponent implements OnInit {
     this.estados = [];
     this.especies = [];
     this.tipos = [];
-    this.filtro = {
-      genero: "",
-      estado: "",
-      especie: "",
-      tipo: "",
-    }
-
+    this.filtro = new BuscarPersonagensFilter();
     this.dadosFiltro = [this.filtro]
   }
 
   ngOnInit(){
     this.buscarUsuarioLogado();
     this.buscarPersonagens();
-    this.filtrarPersonagens(this.characters, this.filtro)
 
     if(localStorage.getItem('buscarPersonagensFilter') != null){
       this.filtro = JSON.parse(localStorage.getItem('buscarPersonagensFilter') || "");
     }
+    this.filtrarPersonagens(this.characters, this.filtro)
     this.responsiveOptions = this.chartUtil.responsiveOptions;
     this.generos = ["Male","Female","Unknown"];
     this.estados = ["Alive", "Dead", "Unknown"];
