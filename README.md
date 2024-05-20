@@ -58,9 +58,18 @@ Na tag head
 No fim do body
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
+```
+* Mais informações sobre as tecnologias
+  
 [Site do Bootstrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
 
-```
+[Site do Angular](https://angular.io/tutorial/first-app)
+
+[Site do PrimeNG](https://primeng.org/installation)
+
+[Site do Chart.js](https://www.chartjs.org/docs/latest/getting-started/)
+
+[Site do ng-select](https://www.npmjs.com/package/@ng-select/ng-select)
 
 ## Estrutura de Diretórios
 
@@ -150,7 +159,7 @@ angular-rickandmortyapi/
     - lista-detalhes.component.cs
 
 
-### 3\. Menu (Menu)
+### 3\. Menu
 
 - **Descrição**: Componente de navegação para a aplicação.
 - **Funcionalidades**:
@@ -160,6 +169,36 @@ angular-rickandmortyapi/
     - menu.component.html
     - menu.component.ts
     - menu.component.css
+ 
+### 4\. Perfil
+
+- **Descrição**: Componente para visualizar perfil do usuário
+- **Funcionalidades**:
+    - Exibir informações do usuário logado
+- **Arquivos**:
+    - perfil.component.html
+    - perfil.component.ts
+    - perfil.component.css
+
+### 5\. Login
+
+- **Descrição**: Tela de autenticação do usuário
+- **Funcionalidades**:
+    - Receber dados para a login na aplicação
+- **Arquivos**:
+    - login.component.html
+    - login.component.ts
+    - login.component.css
+ 
+### 6\. Dashboard
+
+- **Descrição**: Métricas sobre dados da rickandmorty API
+- **Funcionalidades**:
+    - Exibir gráficos e cards com valores de métricas da API
+- **Arquivos**:
+    - dashboard.component.html
+    - dashboard.component.ts
+    - dashboard.component.css
 
 ## Serviços
 
@@ -169,7 +208,15 @@ angular-rickandmortyapi/
 - **Funcionalidades**:
     - Métodos para requisições HTTP (GET, POST, etc.)
 - **Arquivos**:
-    - api.service.ts
+    - login.service.ts
+
+### 2\. Login Service
+
+- **Descrição**: Serviço para autenticação do usuário ao sistema
+- **Funcionalidades**:
+    - Fazer login caso o usuário possua o login usuario e uma senha qualquer.
+    - Fazer logout, retirando as credenciais do localStorage(colocadas no login).
+- **Arquivos**:
     - login.service.ts
 
 ## Modelos
@@ -189,10 +236,9 @@ angular-rickandmortyapi/
 
 - **AuthGuard**: Guarda de rota para proteger páginas restritas (ex: perfil)
 
-## Observações
+## Utils
 
-- A implementação da tela de login, perfil e menu são opcionais.
-- Utilizar mocks para simular a autenticação e dados do usuário (caso a implementação seja opcional).
+- **chart.util.ts** : Util para geração de gráficos com os chart.js
 
 ## Diagrama de casos de uso
 
