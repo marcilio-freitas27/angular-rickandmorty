@@ -11,12 +11,13 @@ export class AppComponent{
 
   title = 'angular-rickandmortyapi';
   usuarioLogado:any;
+  ano:any = new Date().getFullYear();
   constructor(private loginService: LoginService){
     this.usuarioLogado = this.buscarUsuario();
   }
 
   ngOnInit(){
-
+    
   }
 
   buscarUsuario(){

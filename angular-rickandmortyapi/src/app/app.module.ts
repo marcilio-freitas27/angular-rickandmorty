@@ -21,13 +21,15 @@ import { CarouselModule } from 'primeng/carousel';
 import { TooltipModule } from 'primeng/tooltip';
 import { TableModule } from 'primeng/table';
 
-import { ListaComponent } from './view/lista/lista.component';
-
 import { LoginComponent } from './view/login/login.component';
 import { MenuComponent } from './view/menu/menu.component';
+import { DashboardComponent } from './view/dashboard/dashboard.component'
+import { ListaComponent } from './view/lista/lista.component';
+import { ListaDetalhesComponent } from './view/lista/lista-detalhes/lista-detalhes.component';
+import { PerfilComponent } from './view/perfil/perfil.component';
+
 
 import { NgSelectModule } from '@ng-select/ng-select';
-import { ListaDetalhesComponent } from './view/lista/lista-detalhes/lista-detalhes.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { ListaDetalhesComponent } from './view/lista/lista-detalhes/lista-detalh
     ListaComponent,
     LoginComponent,
     ListaDetalhesComponent,
-    MenuComponent
+    MenuComponent,
+    PerfilComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

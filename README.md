@@ -12,11 +12,18 @@ Este projeto consiste na implementação de um dashboard em Angular 16 que se co
 
 ## Configuração do Ambiente de Desenvolvimento
 
-* Instalação do Angular 15
+### Instalação do Angular 15
 
 ```
 npm i -g @angular/cli@15
 ```
+
+### Bibliotecas
+
+* PrimeNG
+
+npm i --save primeng
+
 
 * Criar um novo projeto
 

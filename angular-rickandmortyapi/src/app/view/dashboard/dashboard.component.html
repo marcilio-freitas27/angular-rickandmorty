@@ -1,0 +1,62 @@
+<app-menu></app-menu>
+<div class="mt-5">
+  <div class="m-3" id="dashboard">
+    <p-panel header="Dashboard" [toggleable]="true" styleClass="mt-5">
+      <div class="card shadow-2">
+        <div class="d-flex dash">
+          <div class="m-3 w-75 text-center">
+            <p-card header="Personagens" styleClass="bg bg-info">
+                <h2 class="m-0 text-center">
+                  {{characters.length}}
+                </h2>
+            </p-card>
+          </div>
+          <div class="m-3 w-75 text-center">
+            <p-card header="Tipos de Gênero" styleClass="bg bg-success text-white">
+                <h2 class="m-0 text-center">
+                  {{genero.length}}
+                </h2>
+            </p-card>
+          </div>
+          <div class="m-3 w-75 text-center">
+            <p-card header="Tipos de Estado" styleClass="bg bg-danger text-white">
+                <h2 class="m-0 text-center">
+                  {{estado.length}}
+                </h2>
+            </p-card>
+          </div>
+          <div class="m-3 w-75 text-center">
+            <p-card header="Tipos de Espécies" styleClass="bg bg-warning">
+                <h2 class="m-0 text-center">
+                  {{especie.length}}
+                </h2>
+            </p-card>
+          </div>
+          <div class="m-3 w-75 text-center">
+            <p-card header="Tipos" styleClass="bg bg-secondary text-white">
+                <h2 class="m-0 text-center">
+                  {{tipo.length}}
+                </h2>
+            </p-card>
+          </div>
+        </div>
+      </div>
+      <div class="card shadow-2 card-size">
+        <div class="d-flex chart-responsive display-chart">
+          <div class="chart-size">
+            <p-chart type="pie" [data]="basicData" [options]="basicOptions" class="chart"></p-chart>
+          </div>
+          <div class="chart-size">
+            <p-chart type="doughnut" [data]="basicDataTipos" [options]="basicOptions" class="chart"></p-chart>
+          </div>
+          <div class="chart-size">
+            <p-chart type="pie" [data]="basicDataStatus" [options]="basicOptions" class="chart"></p-chart>
+          </div>
+          <div class="chart-size">
+            <p-chart type="doughnut" [data]="basicDataEspecies" [options]="basicOptions" class="chart"></p-chart>
+          </div>
+        </div>
+      </div>
+    </p-panel>
+  </div>
+</div>

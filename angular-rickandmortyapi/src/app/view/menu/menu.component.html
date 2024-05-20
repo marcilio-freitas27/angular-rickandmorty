@@ -1,34 +1,70 @@
 <nav class="navbar navbar-expand-lg btn-color">
   <div class="container-fluid">
-    <a class="navbar-brand disabled">
-      <img class="rounded-image" src="../../../assets/images/ng-rick-morty-sem-fundo.png" alt="Bootstrap" width="50" height="50">
+    <a class="navbar-brand disabled ">
+      <img class="rounded-circle" [src]="menuImagem" alt="Bootstrap" width="50" height="50">
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <form class="d-flex" role="search">
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="text-black nav-link active" aria-current="page" routerLink="/">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="text-black nav-link active" aria-current="page" routerLink="/character">Personagens</a>
+        </li>
+      </ul>
+      <form class="d-flex dropstart" role="search">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item dropdown">
-            <a class="text-black nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Menu
+            <a class="text-black nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img [src]="usuarioImagem" class="rounded-circle" width="50" height="50" alt="...">
             </a>
             <ul class="dropdown-menu">
-              <li><a class="text-black dropdown-item disabled" href="#">{{ usuarioLogado }}</a></li>
+              <li>
+                <a class="dropdown-item disabled" href="#">{{ usuarioLogado | titlecase }}</a>
+              </li>
+              <li><hr class="text-black dropdown-divider"></li>
+              <li><a class="text-black dropdown-item" routerLink="/perfil">Perfil</a></li>
               <li><hr class="text-black dropdown-divider"></li>
               <li><a class="text-black dropdown-item" href="#" (click)="logout()" >Sair</a></li>
             </ul>
           </li>
         </ul>
       </form>
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="text-black nav-link active" aria-current="page" href="#">Dashboard</a>
-        </li>
-        <li class="nav-item">
-          <a class="text-black nav-link active" aria-current="page" href="#">Personagens</a>
-        </li>
-      </ul>
     </div>
   </div>
 </nav>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="ml-3 mr-3 mt-3">
+
+      <img [src]="usuarioImagem" class="rounded-circle w-25 mx-auto d-block" alt="...">
+
+    <h5 id="offcanvasRightLabel">
+      <a class="text-black dropdown-item disabled text-center" href="#">{{ usuarioLogado | titlecase }}</a>
+    </h5>
+  </div>
+  <div class="ml-3 mr-3">
+    <hr class="text-black">
+  </div>
+  <div class="ml-3 mr-3">
+    <form class="d-flex" role="search">
+    </form>
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+        <a class="text-black nav-link active" aria-current="page" href="#">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="text-black nav-link active" aria-current="page" routerLink="/" fragment="personagens">Personagens</a>
+      </li>
+      <li class="nav-item">
+        <a class="text-black nav-link active" aria-current="page" routerLink="/" fragment="filtros">Filtros</a>
+      </li>
+      <li><hr class="text-black"></li>
+      <li><a class="text-black dropdown-item" href="#" (click)="logout()" >Sair</a></li>
+    </ul>
+  </div>
+</div>

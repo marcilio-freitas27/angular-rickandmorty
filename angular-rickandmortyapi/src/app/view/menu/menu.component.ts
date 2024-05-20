@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
+import { ApiService } from 'src/app/services/api.service';
+import { ViewportScroller } from '@angular/common';
+
 
 @Component({
   selector: 'app-menu',
@@ -10,14 +13,32 @@ import { LoginService } from 'src/app/services/login.service';
 export class MenuComponent implements OnInit {
 
   usuarioLogado:any
-  constructor(private router: Router,
-    private loginService: LoginService
+  usuarioImagem!: string;
+  menuImagem!: string;
+  constructor(
+    private loginService: LoginService,
+    private api: ApiService,
+    private route: ActivatedRoute,
+    private viewportScroller: ViewportScroller,
   ) {
 
    }
 
   ngOnInit() {
     this.usuarioLogado = this.buscarUsuario();
+    this.buscarImagens();
+    this.route.fragment.subscribe((fragment:any) => {
+      this.viewportScroller.scrollToAnchor(fragment);
+    });
+  }
+
+  buscarImagens(){
+    this.api.buscarPersonagensPorId(1).subscribe({
+      next: (res) => this.usuarioImagem = res.image
+    })
+    this.api.buscarPersonagensPorId(19).subscribe({
+      next: (res) => this.menuImagem = res.image
+    })
   }
 
   buscarUsuario(){

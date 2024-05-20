@@ -4,7 +4,6 @@ import { BuscarPersonagensFilter } from 'src/app/models/filter/buscar-personagen
 import { ApiService } from 'src/app/services/api.service';
 import { LoginService } from 'src/app/services/login.service';
 import { ChartUtil } from 'src/app/util/chart.util';
-import { FilterService } from 'primeng/api';
 
 @Component({
   selector: 'app-lista',
@@ -16,13 +15,7 @@ import { FilterService } from 'primeng/api';
 export class ListaComponent implements OnInit {
 
   characters!: Character[];
-  genero!: any[];
-  estado!: any[];
-  especie!: any[];
-  tipo!: any[];
-  basicOptions: any;
-  basicData: any;
-  basicDataStatus: any;
+
   filtro!: BuscarPersonagensFilter;
   generos!: any[];
   estados!: any[];
@@ -31,44 +24,36 @@ export class ListaComponent implements OnInit {
   filteredCharacters!: Character[];
   dadosFiltro!: any[];
   responsiveOptions!:any[];
-  basicDataEspecies: any;
-  basicDataTipos: any;
 
   constructor(
     private api: ApiService,
     private loginService: LoginService,
-    public chartUtil: ChartUtil,
-  private filterService: FilterService){
+    public chartUtil: ChartUtil){
     this.characters = [];
-    this.basicOptions = {};
-    this.genero = [];
     this.generos = [];
     this.estados = [];
-    this.estado = [];
     this.especies = [];
-    this.especie = [];
     this.tipos = [];
-    this.tipo = [];
-    this.estado = [];
-    this.filtro = {
-      genero: "",
-      estado: "",
-      especie: "",
-      tipo: ""
+    if(localStorage.getItem('buscarPersonagensFilter') != null){
+      this.filtro = JSON.parse(localStorage.getItem('buscarPersonagensFilter') || "");
     }
+   
     this.dadosFiltro = [this.filtro]
   }
 
   ngOnInit(){
     this.buscarUsuarioLogado();
     this.buscarPersonagens();
-    this.basicOptions = this.chartUtil.basicOptions;
+    this.filtrarPersonagens(this.characters, this.filtro)
 
     if(localStorage.getItem('buscarPersonagensFilter') != null){
       this.filtro = JSON.parse(localStorage.getItem('buscarPersonagensFilter') || "");
     }
-
     this.responsiveOptions = this.chartUtil.responsiveOptions;
+    this.generos = ["Male","Female","Unknown"];
+    this.estados = ["Alive", "Dead", "Unknown"];
+    this.especies = ["Human","Alien"];
+    this.tipos = ["Genetic experiment","Super Human","Parasite","Human with antennae","Human with ant in his eyes","Vazio"]
   }
 
   buscarUsuarioLogado(){
@@ -109,114 +94,12 @@ export class ListaComponent implements OnInit {
         next: (data: any) => {
           this.characters = data.results;
           this.filteredCharacters = data.results;
-          this.gerarGraficos();
         },
         error: (err: any) => {
           console.log(err)
         }
       }
     )
-  }
-  gerarGraficos() {
-    this.generos = ["Male","Female","Unknown"];
-    this.buscarGeneros();
-    let gender = this.genero;
-    let genderList:any[] = [gender[0].length,gender[1].length,gender[2].length]
-    this.basicData = this.chartUtil.gerarChart(this.generos,'Gender',genderList)
-
-    this.estados = ["Alive", "Dead", "Unknown"];
-    this.buscarEstados();
-    let status = this.estado;
-    let statusList:any[] = [status[0].length,status[1].length,status[2].length]
-    this.basicDataStatus = this.chartUtil.gerarChart(this.estados,'Status',statusList)
-
-    this.especies = ["Human","Alien"];
-    this.buscarEspecies();
-    let species = this.especie;
-    let speciesList:any[] = [species[0].length,species[1].length]
-    this.basicDataEspecies = this.chartUtil.gerarChart(this.especies,'Specie',speciesList);
-
-    this.tipos = ["Genetic experiment","Super Human","Parasite","Human with antennae","Human with ant in his eyes","Vazio"]
-    this.buscarTipos();
-    let type = this.tipo;
-    let typeList:any[] = [type[0].length,type[1].length,type[2].length,type[3].length,type[4].length,type[5].length]
-    this.basicDataTipos = this.chartUtil.gerarChart(this.tipos,'Type',typeList)
-  }
-
-  buscarGeneros(){
-    let male = [];
-    let female = [];
-    let unknown = [];
-    for (let index = 0; index < this.characters.length; index++) {
-      let gender =  this.characters[index].gender;
-      if(gender == "Male"){
-        male.push(this.characters[index].gender);
-      } else if(gender == "Female"){
-        female.push(this.characters[index].gender);
-      }else {
-        unknown.push(this.characters[index].gender);
-      }
-    }
-    this.genero.push(male,female, unknown);
-  }
-
-  buscarEstados(){
-    let alive = [];
-    let dead = [];
-    let unknown = [];
-    for (let index = 0; index < this.characters.length; index++) {
-      let status =  this.characters[index].status;
-      if(status == "Alive"){
-        alive.push(this.characters[index].status);
-      } else if(status == "Dead"){
-        dead.push(this.characters[index].status);
-      }else if(status == "unknown"){
-        unknown.push(this.characters[index].status);
-      }
-    }
-    this.estado.push(alive,dead, unknown);
-  }
-
-  buscarEspecies(){
-    let human = [];
-    let alien = [];
-    for (let index = 0; index < this.characters.length; index++) {
-      let species =  this.characters[index].species;
-      if(species == "Human"){
-        human.push(this.characters[index].species);
-      }else {
-        alien.push(this.characters[index].species);
-      }
-    }
-
-    this.especie.push(human,alien);
-  }
-
-  buscarTipos(){
-    let geneticExperiment = [];
-    let superHuman = [];
-    let parasite = [];
-    let humanAntennae = [];
-    let humanEyeAnts = [];
-    let vazio = [];
-    for (let index = 0; index < this.characters.length; index++) {
-      let types =  this.characters[index].type;
-      if(types == "Genetic experiment"){
-        geneticExperiment.push(this.characters[index].type);
-      }else if(types == "Super Human"){
-        superHuman.push(this.characters[index].type);
-      }else if(types == "Parasite"){
-        parasite.push(this.characters[index].type);
-      }else if(types == "Human with antennae"){
-        humanAntennae.push(this.characters[index].type);
-      }else if(types == "Human with ant in his eyes"){
-        humanEyeAnts.push(this.characters[index].type);
-      }
-      else {
-        vazio.push(this.characters[index].type);
-      }
-    }
-    this.tipo.push(geneticExperiment,vazio,superHuman,parasite,humanAntennae,humanEyeAnts)
   }
 
   buscarInformacoesPorIf(id:number){

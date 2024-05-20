@@ -1,0 +1,22 @@
+
+.chart{
+  margin-bottom: 1em;
+  width: 49%;
+}
+
+.chart-size{
+  width: 400px;
+  height: 300px;
+}
+
+@media(max-width:1200px){
+  .display-chart{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .chart-size{
+    width: 300px;
+    height: 300px;
+  }
+}
