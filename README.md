@@ -196,3 +196,4 @@ angular-rickandmortyapi/
 
 ## Diagrama de casos de uso
 
+![diagrama](use-case-diagram.png)
