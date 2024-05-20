@@ -2,13 +2,15 @@
 
 ## Visão Geral
 
-Este projeto consiste na implementação de um dashboard em Angular 16 que se conecta à versão REST da [Rick and Morty API](https://rickandmortyapi.com/documentation/#rest) para exibir listagens paginadas com scroll infinito e detalhes dos itens, além de uma barra de busca global que filtra as listagens ativas.
+Este projeto consiste na implementação de um dashboard em Angular 15 que se conecta à versão REST da [Rick and Morty API](https://rickandmortyapi.com/documentation/#rest) para exibir listagens paginadas com scroll infinito e detalhes dos itens, além de uma barra de busca global que filtra as listagens ativas.
 
 ## Tecnologias Utilizadas
 
 - Angular 15
 - Bootstrap 5
-- PrimeNG 16
+- PrimeNG 16 
+- Ng-select 10
+- Chart.js 4
 
 ## Configuração do Ambiente de Desenvolvimento
 
@@ -17,14 +19,6 @@ Este projeto consiste na implementação de um dashboard em Angular 16 que se co
 ```
 npm i -g @angular/cli@15
 ```
-
-### Bibliotecas
-
-* PrimeNG
-
-npm i --save primeng
-
-
 * Criar um novo projeto
 
 ```
@@ -37,7 +31,29 @@ ng new angular-rickandmortyapi
   Sass   [ https://sass-lang.com/documentation/syntax#the-indented-syntax ] 
   Less   [ http://lesscss.org                                             ]
 
-ng g s api --skip-tests
+
+### Bibliotecas
+
+* PrimeNG
+
+npm i --save primeng@15
+npm i --save primeicons@15
+npm i --save @ng-select/ng-select@10.0.4
+npm i --save chart.js@4.4.2
+npm i --save primeflex@3.3.1
+
+* Bootstrap
+
+Inserir itens no index.html (link e script)
+
+Na tag head
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+No fim do body
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+[Site do Bootstrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
+
 ```
 
 ## Estrutura de Diretórios
@@ -48,6 +64,10 @@ angular-rickandmortyapi/
 ├── src/
 │   ├── app/
 │   │   ├── view/
+|   |   |   ├── dashboard/
+│   │   │   │   ├── dashboard.component.html
+│   │   │   │   ├── dashboard.component.ts
+│   │   │   │   └── dashboard.component.css
 │   │   │   ├── lista/
 │   │   │   │   ├── lista.component.html
 │   │   │   │   ├── lista.component.ts
@@ -56,10 +76,6 @@ angular-rickandmortyapi/
 │   │   │   │   │   ├── lista-detalhes.component.html
 │   │   │   │   │   ├── lista-detalhes.component.ts
 │   │   │   │   │   └── lista-detalhes.component.css
-│   │   │   │   └── lista-busca/
-│   │   │   │       ├── lista-busca.component.html
-│   │   │   │       ├── lista-busca.component.ts
-│   │   │   │       └── lista-busca.component.css
 │   │   │   ├── login/
 │   │   │   │   ├── login.component.html
 │   │   │   │   ├── login.component.ts
@@ -121,6 +137,7 @@ angular-rickandmortyapi/
 - **Descrição**: Componente para exibir os detalhes de um item da listagem.
 - **Funcionalidades**:
     - Exibir detalhes do item selecionado
+    - Filtro de personagem por tipos gerais, gênero, espécie e status.
 - **Arquivos**:
     - lista-detalhes.component.html
     - lista-detalhes.component.ts
@@ -147,7 +164,6 @@ angular-rickandmortyapi/
     - Métodos para requisições HTTP (GET, POST, etc.)
 - **Arquivos**:
     - api.service.ts
-    - lista.service.ts
     - login.service.ts
 
 ## Modelos
@@ -155,11 +171,11 @@ angular-rickandmortyapi/
 - **Characters Model**: Modelo para os personagens
 - **Location Character Model**: Modelo para a localização do personagem
 - **Origin Character Model**: Modelo para a origem do personagem
-- **User Model**: Modelo para os dados do usuário logado
 
 ## Rotas
 
 - **"/"**: Página inicial (dashboard)
+- **"/characters"**: Página de listagem e filtro de personagens
 - **"/characters/:id"**: Página de um dos personagens de Rick and Morty
 - **"/login"**: Página de login
 
@@ -172,28 +188,5 @@ angular-rickandmortyapi/
 - A implementação da tela de login, perfil e menu são opcionais.
 - Utilizar mocks para simular a autenticação e dados do usuário (caso a implementação seja opcional).
 
-## Diagrama de sequência
+## Diagrama de casos de uso
 
-```mermaid
-    sequenceDiagram
-        participant User as User
-        participant AppComponent as AppComponent
-        participant NavbarComponent as Navbar
-        participant listaComponent as lista
-        participant listaDetailComponent as Detail
-        participant listaSearchComponent as Search
-        participant ProfileComponent as Profile
-
-        User->>AppComponent: Realiza o login
-        AppComponent->>AppComponent: Valida as credenciais
-        AppComponent->>+Navbar: Exibe barra de navegação
-        AppComponent->>+lista: Carrega listagem de itens
-        User->>Navbar: Acessa opção de busca global
-        Navbar->>Search: Inicia busca por termo
-        Search->>AppComponent: Solicita filtro na listagem
-        AppComponent->>+lista: Filtra listagem com termo
-        User->>+lista: Visualiza detalhes de um item
-        lista->>+Detail: Carrega detalhes do item
-        User->>Navbar: Acessa opção de perfil
-        Navbar->>+Profile: Navega para a página de perfil
-```
