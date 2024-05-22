@@ -242,4 +242,81 @@ angular-rickandmortyapi/
 
 ## Diagrama de casos de uso
 
-![diagrama](use-case-diagram.png)
+```plantuml
+
+@startuml
+
+left to right direction
+
+package "uc Rick and Morty API"{
+
+actor Usuario
+
+usecase "Tela de login" as login
+usecase "Dashboard" as dash
+usecase "Personagens" as personagem
+usecase "Detalhes Personagens" as detalhes
+usecase "Filtrar personagens" as filtro
+usecase "Perfil" as perfil
+
+Usuario --> login
+login --> dash
+login --> personagem
+login --> perfil
+personagem <.. detalhes: extends
+personagem <.. filtro: include
+
+}
+
+@enduml
+
+```
+
+## Diagrama de sequência
+
+```plantuml
+
+@startuml
+
+
+hide footbox
+
+actor usuario
+
+== Tela Inicial ==
+usuario -> login: Autenticação
+
+alt Credenciais corretas
+usuario -> dashboard: Sucesso
+else Credenciais incorretas
+login -> login: Falha
+end
+
+== Personagens ==
+
+alt Credenciais corretas
+usuario -> menu: Acessa o menu
+alt Escolhe um personagem
+menu -> personagens: Acessa Personagens
+personagens -> detalhes: Acessa Detalhes
+else Escolhe ver todos os personagens de uma vez
+personagens -> personagens: Acessa Personagens
+end
+else Credenciais incorretas
+login -> login: Falha
+end
+
+
+== Perfil ==
+
+alt Credenciais corretas
+usuario -> menu: Acessa o menu
+menu -> perfil: Acessa Perfil
+else Credenciais incorretas
+login -> login: Falha
+end
+
+@enduml
+
+```
+
