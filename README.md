@@ -310,10 +310,10 @@ end
 == Perfil ==
 
 alt Credenciais corretas
-usuario -> menu: Acessa o menu
-menu -> perfil: Acessa Perfil
+    usuario -> menu: Acessa o menu
+    menu -> perfil: Acessa Perfil
 else Credenciais incorretas
-login -> login: Falha
+    login -> login: Falha
 end
 
 @enduml
