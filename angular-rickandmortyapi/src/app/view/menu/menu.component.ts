@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Route, Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { ApiService } from 'src/app/services/api.service';
-import { ViewportScroller } from '@angular/common';
 
 
 @Component({
@@ -18,8 +16,6 @@ export class MenuComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     private api: ApiService,
-    private route: ActivatedRoute,
-    private viewportScroller: ViewportScroller,
   ) {
 
    }
@@ -27,9 +23,7 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
     this.usuarioLogado = this.buscarUsuario();
     this.buscarImagens();
-    this.route.fragment.subscribe((fragment:any) => {
-      this.viewportScroller.scrollToAnchor(fragment);
-    });
+    
   }
 
   buscarImagens(){
