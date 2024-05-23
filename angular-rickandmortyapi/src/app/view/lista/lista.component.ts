@@ -91,6 +91,7 @@ export class ListaComponent implements OnInit {
         next: (data: any) => {
           this.characters = data.results;
           this.filteredCharacters = data.results;
+          this.personagensFiltrados(data.results, this.filtro);
         },
         error: (err: any) => {
           console.log(err)
