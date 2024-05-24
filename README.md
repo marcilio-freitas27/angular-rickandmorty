@@ -71,6 +71,25 @@ No fim do body
 
 [Site do ng-select](https://www.npmjs.com/package/@ng-select/ng-select)
 
+
+# css
+
+* Foi preciso fazer a seguinte alteração no código para gera o build (angular.js)
+
+"budgets": [
+  {
+    "type": "initial",
+    "maximumWarning": "2mb",
+    "maximumError": "5mb"
+  },
+  {
+    "type": "anyComponentStyle",
+    "maximumWarning": "6kb",
+    "maximumError": "10kb"
+  }
+]
+
+
 ## Estrutura de Diretórios
 
 ```
