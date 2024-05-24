@@ -263,8 +263,8 @@ angular-rickandmortyapi/
 ## Diagrama de casos de uso
 
 
-![use-case-diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/marcilio-freitas27/angular-rickandmorty/diagrama-caso-uso.iuml)
+![use-case-diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/marcilio-freitas27/main/angular-rickandmorty/diagrama-caso-uso.iuml)
 
 ## Diagrama de sequência
 
-![sequence-diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/marcilio-freitas27/angular-rickandmorty/diagrama-sequencia.iuml)
+![sequence-diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/marcilio-freitas27/main/angular-rickandmorty/diagrama-sequencia.iuml)
