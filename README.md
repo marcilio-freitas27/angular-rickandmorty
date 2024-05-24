@@ -22,12 +22,12 @@ com o p-dropdown e por isso a escolha de um select.
 
 ### Instalação do Angular 15
 
-```
+```cmd
 npm i -g @angular/cli@15
 ```
 * Criar um novo projeto
 
-```
+```cmd
 ng new angular-rickandmortyapi
 ? Would you like to add Angular routing? (y/N) y
 
@@ -36,7 +36,7 @@ ng new angular-rickandmortyapi
   SCSS   [ https://sass-lang.com/documentation/syntax#scss                ] 
   Sass   [ https://sass-lang.com/documentation/syntax#the-indented-syntax ] 
   Less   [ http://lesscss.org                                             ]
-
+```
 
 ### Bibliotecas
 
@@ -51,7 +51,7 @@ npm i --save primeflex@3.3.1
 * Bootstrap
 
 Inserir itens no index.html (link e script)
-
+```html
 Na tag head
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
@@ -76,6 +76,7 @@ No fim do body
 
 * Foi preciso fazer a seguinte alteração no código para gera o build (angular.js)
 
+```json
 "budgets": [
   {
     "type": "initial",
@@ -88,7 +89,7 @@ No fim do body
     "maximumError": "10kb"
   }
 ]
-
+```
 
 ## Estrutura de Diretórios
 
@@ -261,81 +262,9 @@ angular-rickandmortyapi/
 
 ## Diagrama de casos de uso
 
-```plantuml
 
-@startuml
-
-left to right direction
-
-package "uc Rick and Morty API"{
-
-actor Usuario
-
-usecase "Tela de login" as login
-usecase "Dashboard" as dash
-usecase "Personagens" as personagem
-usecase "Detalhes Personagens" as detalhes
-usecase "Filtrar personagens" as filtro
-usecase "Perfil" as perfil
-
-Usuario --> login
-login --> dash
-login --> personagem
-login --> perfil
-personagem <.. detalhes: extends
-personagem <.. filtro: include
-
-}
-
-@enduml
-
-```
+![use-case-diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/marcilio-freitas27/angular-rickandmorty/diagrama-caso-uso.iuml)
 
 ## Diagrama de sequência
 
-```plantuml
-
-@startuml
-
-
-hide footbox
-
-actor usuario
-
-== Tela Inicial ==
-usuario -> login: Autenticação
-
-alt Credenciais corretas
-usuario -> dashboard: Sucesso
-else Credenciais incorretas
-login -> login: Falha
-end
-
-== Personagens ==
-
-alt Credenciais corretas
-usuario -> menu: Acessa o menu
-alt Escolhe um personagem
-menu -> personagens: Acessa Personagens
-personagens -> detalhes: Acessa Detalhes
-else Escolhe ver todos os personagens de uma vez
-personagens -> personagens: Acessa Personagens
-end
-else Credenciais incorretas
-login -> login: Falha
-end
-
-
-== Perfil ==
-
-alt Credenciais corretas
-    usuario -> menu: Acessa o menu
-    menu -> perfil: Acessa Perfil
-else Credenciais incorretas
-    login -> login: Falha
-end
-
-@enduml
-
-```
-
+![sequence-diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/marcilio-freitas27/angular-rickandmorty/diagrama-sequencia.iuml)
