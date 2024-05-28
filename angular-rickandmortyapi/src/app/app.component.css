@@ -1,18 +1,28 @@
+html, body{
+  min-height: 100%;
+}
 
-.footer-07 p {
-  color: #000 }
+body{
+  padding: 0;
+  margin: 0;
+}
+
+
 .footer-07 .footer-heading {
   font-size: 30px;
-  color: #000;
   font-weight: 700;
-  margin-bottom: 30px; }
-  .footer-07 .footer-heading .logo {
-    color: #000; }
-.footer-07 .ftco-footer-social li a {
-  background: transparent;
-  border: 1px solid #a3de83; }
+  margin-bottom: 30px;
+}
+.footer-07 .footer-heading .logo {
+  color: #000;
+}
 
 a{
   text-decoration: none;
 }
 
+footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
