@@ -30,6 +30,7 @@ import { PerfilComponent } from './view/perfil/perfil.component';
 
 
 import { NgSelectModule } from '@ng-select/ng-select';
+import { FooterComponent } from './view/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ListaDetalhesComponent,
     MenuComponent,
     PerfilComponent,
-    DashboardComponent
+    DashboardComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

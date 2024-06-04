@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
 import { ApiService } from 'src/app/services/api.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,6 +17,7 @@ export class MenuComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     private api: ApiService,
+    private router: Router,
   ) {
 
    }
@@ -41,6 +43,7 @@ export class MenuComponent implements OnInit {
 
   logout(){
     localStorage.clear();
+    this.router.navigate(["login"]);
   }
 
 

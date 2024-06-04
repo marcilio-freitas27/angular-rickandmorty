@@ -13,14 +13,11 @@ export class AppComponent{
   usuarioLogado:any;
   ano:any = new Date().getFullYear();
   constructor(private loginService: LoginService){
-    this.usuarioLogado = this.buscarUsuario();
+    this.usuarioLogado = localStorage.getItem("buscaUsuarioFilter");
   }
 
   ngOnInit(){
     
   }
 
-  buscarUsuario(){
-    return this.loginService.buscarUsuario();
-  }
 }
