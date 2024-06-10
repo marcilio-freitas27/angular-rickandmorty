@@ -16,3 +16,9 @@ nav{
 .form-search{
   width: auto !important;
 }
+
+@media (max-width: 640px){
+  .offcanvas.offcanvas-end{
+    width: 50%;
+  }
+}
