@@ -3,7 +3,16 @@
 @import "primeng/resources/primeng.css";
 @import "~@ng-select/ng-select/themes/default.theme.css";
 
-html {
+html{
+  min-height: 100%;
+  position: relative;
+}
+
+html,body {
+  height: 100%;
+}
+
+html{
   font-size: 14px;
 }
 
