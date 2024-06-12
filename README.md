@@ -260,11 +260,21 @@ angular-rickandmortyapi/
 
 - **chart.util.ts** : Util para geração de gráficos com os chart.js
 
+## Requisitos
+
+## Cronograma
+
 ## Diagrama de casos de uso
 
+### Casos de uso
+## Regras de negócio
 
-![use-case-diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/marcilio-freitas27/angular-rickandmorty/main/diagrama-caso-uso.iuml?token=GHSAT0AAAAAACSKZ4HNX7LYGQXIM7KFCTKUZSQ2PJQ)
+### Diagrama
+
+![use-case-diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/marcilio-freitas27/angular-rickandmorty/main/diagrama-caso-uso.iuml?)
 
 ## Diagrama de sequência
 
-![sequence-diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/marcilio-freitas27/angular-rickandmorty/main/diagrama-sequencia.iuml?token=GHSAT0AAAAAACSKZ4HMAPSWUK4JUIKNDTWAZSQ2QIA)
+![sequence-diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/marcilio-freitas27/angular-rickandmorty/main/diagrama-sequencia.iuml?)
+
+## Requisitos não-funcionais
