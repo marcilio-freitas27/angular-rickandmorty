@@ -1,12 +1,5 @@
 
 
-.image-background{
-  background:url("../../../assets/images/background.png")no-repeat center center fixed;
-  background-size: cover;
-  color:#fff;
-  width: 100%;
-}
-
 .body{
   top: 0;
   padding: 0;

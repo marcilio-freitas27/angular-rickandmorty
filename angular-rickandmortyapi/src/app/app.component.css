@@ -1,0 +1,8 @@
+.image-background{
+  background:url("../assets/images/background.png")no-repeat center center fixed;
+  background-size: cover;
+  color:#fff;
+  width: 100%;
+  height: 400vh;
+  padding-right: none !important;
+}
