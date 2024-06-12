@@ -24,6 +24,7 @@ export class ListaComponent implements OnInit {
   filteredCharacters!: Character[];
   dadosFiltro!: any[];
   responsiveOptions!:any[];
+  largura: any;
 
   constructor(
     private api: ApiService,
@@ -50,7 +51,16 @@ export class ListaComponent implements OnInit {
     this.generos = ["Male","Female","Unknown"];
     this.estados = ["Alive", "Dead", "Unknown"];
     this.especies = ["Human","Alien"];
-    this.tipos = ["Genetic experiment","Super Human","Parasite","Human with antennae","Human with ant in his eyes","Vazio"]
+    this.tipos = ["Genetic experiment","Super Human","Parasite","Human with antennae","Human with ant in his eyes","Vazio"];
+    this.alterarLargura();
+    this.largura = this.alterarLargura();
+    window.addEventListener("resize", this.alterarLargura);
+  }
+
+  alterarLargura(){
+    this.largura = window.innerWidth;
+    console.log(this.largura)
+    return this.largura;
   }
 
   buscarUsuarioLogado(){
