@@ -32,11 +32,8 @@
     <div class="m-3">
       <h2 id="personagens"></h2>
       <p-panel header="Personagens" [toggleable]="true">
-        <p-carousel [value]="filteredCharacters" [numVisible]="3" [numScroll]="3" [circular]="true" autoPlayInterval="3000" 
-        [responsiveOptions]="responsiveOptions" 
-        [styleClass]="filteredCharacters.length == 1 && largura > 1200 ? 'w-50' : ''" 
-        [ngStyle]="{'display': filteredCharacters.length == 1 && largura > 1200 ? 'flex' : '', 
-                  'justify-content': filteredCharacters.length == 1 && largura > 1200 ? 'center' : ''}">
+        <p-carousel [value]="filteredCharacters" [numVisible]="3" [numScroll]="3" [circular]="true" autoPlayInterval="3000"
+        [responsiveOptions]="responsiveOptions" [ngClass]="{'size': (filteredCharacters.length == 1)}">
           <ng-template let-characters pTemplate="item">
               <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
                   <div class="mb-3">
@@ -48,6 +45,7 @@
                           <button pButton class="btn-color" [routerLink]="['/character',buscarInformacoesPorIf(characters.id)]" type="button" styleClass="p-button p-button-rounded mr-2" icon="pi pi-search" pTooltip="Ver informações do personagem" tooltipPosition="top"></button>
                       </div>
                   </div>
+
               </div>
           </ng-template>
         </p-carousel>
