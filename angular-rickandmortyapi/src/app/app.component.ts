@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { LoginService } from './services/login.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +10,7 @@ export class AppComponent{
   title = 'angular-rickandmortyapi';
   usuarioLogado:any;
   ano:any = new Date().getFullYear();
-  constructor(private loginService: LoginService){
+  constructor(){
     this.usuarioLogado = localStorage.getItem("buscaUsuarioFilter");
   }
 

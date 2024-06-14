@@ -64,100 +64,71 @@ export class DashboardComponent implements OnInit {
     this.generos = ["Male","Female","Unknown"];
     this.buscarGeneros();
     let gender = this.genero;
-    let genderList:any[] = [gender[0].length,gender[1].length,gender[2].length]
+    let genderList:any[] = [gender[0],gender[1],gender[2]]
     this.basicData = this.chartUtil.gerarChart(this.generos,'Gender',genderList)
 
     this.estados = ["Alive", "Dead", "Unknown"];
     this.buscarEstados();
     let status = this.estado;
-    let statusList:any[] = [status[0].length,status[1].length,status[2].length]
+    let statusList:any[] = [status[0],status[1],status[2]]
     this.basicDataStatus = this.chartUtil.gerarChart(this.estados,'Status',statusList)
 
     this.especies = ["Human","Alien"];
     this.buscarEspecies();
     let species = this.especie;
-    let speciesList:any[] = [species[0].length,species[1].length]
+    let speciesList:any[] = [species[0],species[1]]
     this.basicDataEspecies = this.chartUtil.gerarChart(this.especies,'Specie',speciesList);
 
     this.tipos = ["Genetic experiment","Super Human","Parasite","Human with antennae","Human with ant in his eyes","Vazio"]
     this.buscarTipos();
     let type = this.tipo;
-    let typeList:any[] = [type[0].length,type[1].length,type[2].length,type[3].length,type[4].length,type[5].length]
+    let typeList:any[] = [type[0],type[1],type[2],type[3],type[4],type[5]]
     this.basicDataTipos = this.chartUtil.gerarChart(this.tipos,'Type',typeList)
   }
 
   buscarGeneros(){
-    let male = [];
-    let female = [];
-    let unknown = [];
+    let male = 0;
+    let female = 0;
+    let unknown = 0;
     for (let index = 0; index < this.characters.length; index++) {
       let gender =  this.characters[index].gender;
-      if(gender == "Male"){
-        male.push(this.characters[index].gender);
-      } else if(gender == "Female"){
-        female.push(this.characters[index].gender);
-      }else {
-        unknown.push(this.characters[index].gender);
-      }
+      gender == "Male" ? male += 1 : (gender == "Female" ? female += 1 : unknown += 1);
     }
     this.genero.push(male,female, unknown);
   }
 
   buscarEstados(){
-    let alive = [];
-    let dead = [];
-    let unknown = [];
+    let alive = 0;
+    let dead =  0
+    let unknown = 0;
     for (let index = 0; index < this.characters.length; index++) {
       let status =  this.characters[index].status;
-      if(status == "Alive"){
-        alive.push(this.characters[index].status);
-      } else if(status == "Dead"){
-        dead.push(this.characters[index].status);
-      }else if(status == "unknown"){
-        unknown.push(this.characters[index].status);
-      }
+      status == "Alive" ? alive += 1 : (status == "Dead" ? dead += 1 : unknown += 1);
     }
     this.estado.push(alive,dead, unknown);
   }
 
   buscarEspecies(){
-    let human = [];
-    let alien = [];
+    let human = 0;
+    let alien = 0;
     for (let index = 0; index < this.characters.length; index++) {
       let species =  this.characters[index].species;
-      if(species == "Human"){
-        human.push(this.characters[index].species);
-      }else {
-        alien.push(this.characters[index].species);
-      }
+      species == "Human" ? human += 1 : alien += 1;
     }
-
     this.especie.push(human,alien);
   }
 
   buscarTipos(){
-    let geneticExperiment = [];
-    let superHuman = [];
-    let parasite = [];
-    let humanAntennae = [];
-    let humanEyeAnts = [];
-    let vazio = [];
+    let geneticExperiment = 0;
+    let superHuman = 0;
+    let parasite = 0;
+    let humanAntennae = 0;
+    let humanEyeAnts = 0;
+    let vazio = 0;
     for (let index = 0; index < this.characters.length; index++) {
       let types =  this.characters[index].type;
-      if(types == "Genetic experiment"){
-        geneticExperiment.push(this.characters[index].type);
-      }else if(types == "Super Human"){
-        superHuman.push(this.characters[index].type);
-      }else if(types == "Parasite"){
-        parasite.push(this.characters[index].type);
-      }else if(types == "Human with antennae"){
-        humanAntennae.push(this.characters[index].type);
-      }else if(types == "Human with ant in his eyes"){
-        humanEyeAnts.push(this.characters[index].type);
-      }
-      else {
-        vazio.push(this.characters[index].type);
-      }
+      let ultimosTipos = (types == "Human with antennae" ? humanAntennae += 1 : (types == "Human with ant in his eyes" ? humanEyeAnts += 1 : vazio += 1));
+      types == "Genetic experiment" ? geneticExperiment += 1 : (types == "Super Human" ? superHuman +=1 : (types == "Parasite" ? parasite += 1 : ultimosTipos))
     }
     this.tipo.push(geneticExperiment,vazio,superHuman,parasite,humanAntennae,humanEyeAnts)
   }

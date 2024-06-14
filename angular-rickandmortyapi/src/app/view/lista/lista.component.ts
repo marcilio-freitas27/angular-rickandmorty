@@ -59,7 +59,6 @@ export class ListaComponent implements OnInit {
 
   alterarLargura(){
     this.largura = window.innerWidth;
-    console.log(this.largura)
     return this.largura;
   }
 
@@ -72,24 +71,19 @@ export class ListaComponent implements OnInit {
   }
 
   filtrarPersonagens(personagens: Character[], filtro: BuscarPersonagensFilter): Character[] {
-    // Verificar se todos os valores do filtro são nulos
     localStorage.setItem('buscarPersonagensFilter', JSON.stringify(this.filtro));
     const todosNulos = Object.values(filtro).every(valor => valor === null);
 
     if (todosNulos) {
-      // Se todos os valores do filtro forem nulos, retornar todos os personagens
       return personagens;
     }
 
-    // Filtrar os personagens com base nos critérios do filtro
     return personagens.filter(personagem => {
-      // Verificar se o personagem corresponde a todos os critérios não nulos do filtro
       const correspondeGenero = filtro.genero ? personagem.gender === filtro.genero : true;
       const correspondeEstado = filtro.estado ? personagem.status === filtro.estado : true;
       const correspondeEspecie = filtro.especie ? personagem.species === filtro.especie : true;
       const correspondeTipo = filtro.tipo ? personagem.type === filtro.tipo : true;
 
-      // Retornar verdadeiro se todos os critérios forem atendidos
       return correspondeGenero && correspondeEstado && correspondeEspecie && correspondeTipo;
     });
   }
