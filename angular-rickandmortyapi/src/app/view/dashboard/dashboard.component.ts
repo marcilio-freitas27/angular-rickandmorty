@@ -11,15 +11,15 @@ import { ChartUtil } from 'src/app/util/chart.util';
 export class DashboardComponent implements OnInit {
 
   characters!: Character[];
-  generos!: any[];
-  estados!: any[];
-  especies!: any[];
-  tipos!: any[];
+  generos!: string[];
+  estados!: string[];
+  especies!: string[];
+  tipos!: string[];
 
-  genero!: any[];
-  estado!: any[];
-  especie!: any[];
-  tipo!: any[];
+  genero!: number[];
+  estado!: number[];
+  especie!: number[];
+  tipo!: number[];
 
   basicOptions: any;
   basicData: any;
@@ -62,28 +62,16 @@ export class DashboardComponent implements OnInit {
 
   gerarGraficos() {
     this.generos = ["Male","Female","Unknown"];
-    this.buscarGeneros();
-    let gender = this.genero;
-    let genderList:any[] = [gender[0],gender[1],gender[2]]
-    this.basicData = this.chartUtil.gerarChart(this.generos,'Gender',genderList)
+    this.basicData = this.chartUtil.gerarChart(this.generos,'Gender',this.buscarGeneros());
 
     this.estados = ["Alive", "Dead", "Unknown"];
-    this.buscarEstados();
-    let status = this.estado;
-    let statusList:any[] = [status[0],status[1],status[2]]
-    this.basicDataStatus = this.chartUtil.gerarChart(this.estados,'Status',statusList)
+    this.basicDataStatus = this.chartUtil.gerarChart(this.estados,'Status',this.buscarEstados());
 
     this.especies = ["Human","Alien"];
-    this.buscarEspecies();
-    let species = this.especie;
-    let speciesList:any[] = [species[0],species[1]]
-    this.basicDataEspecies = this.chartUtil.gerarChart(this.especies,'Specie',speciesList);
+    this.basicDataEspecies = this.chartUtil.gerarChart(this.especies,'Specie',this.buscarEspecies());
 
     this.tipos = ["Genetic experiment","Super Human","Parasite","Human with antennae","Human with ant in his eyes","Vazio"]
-    this.buscarTipos();
-    let type = this.tipo;
-    let typeList:any[] = [type[0],type[1],type[2],type[3],type[4],type[5]]
-    this.basicDataTipos = this.chartUtil.gerarChart(this.tipos,'Type',typeList)
+    this.basicDataTipos = this.chartUtil.gerarChart(this.tipos,'Type',this.buscarTipos());
   }
 
   buscarGeneros(){
@@ -95,6 +83,7 @@ export class DashboardComponent implements OnInit {
       gender == "Male" ? male += 1 : (gender == "Female" ? female += 1 : unknown += 1);
     }
     this.genero.push(male,female, unknown);
+    return this.genero;
   }
 
   buscarEstados(){
@@ -106,16 +95,17 @@ export class DashboardComponent implements OnInit {
       status == "Alive" ? alive += 1 : (status == "Dead" ? dead += 1 : unknown += 1);
     }
     this.estado.push(alive,dead, unknown);
+    return this.estado;
   }
 
   buscarEspecies(){
     let human = 0;
     let alien = 0;
     for (let index = 0; index < this.characters.length; index++) {
-      let species =  this.characters[index].species;
-      species == "Human" ? human += 1 : alien += 1;
+      this.characters[index].species == "Human" ? human += 1 : alien += 1;
     }
     this.especie.push(human,alien);
+    return this.especie;
   }
 
   buscarTipos(){
@@ -126,11 +116,19 @@ export class DashboardComponent implements OnInit {
     let humanEyeAnts = 0;
     let vazio = 0;
     for (let index = 0; index < this.characters.length; index++) {
-      let types =  this.characters[index].type;
-      let ultimosTipos = (types == "Human with antennae" ? humanAntennae += 1 : (types == "Human with ant in his eyes" ? humanEyeAnts += 1 : vazio += 1));
-      types == "Genetic experiment" ? geneticExperiment += 1 : (types == "Super Human" ? superHuman +=1 : (types == "Parasite" ? parasite += 1 : ultimosTipos))
+      let types = ["Human with antennae","Human with ant in his eyes","Genetic experiment","Super Human","Parasite"]
+      let increment = [() => { humanAntennae += 1; },() => { humanEyeAnts += 1; },() => { geneticExperiment += 1; },() => { superHuman += 1; },() => { parasite += 1; }]
+      const typeCounters:any = {};
+      types.forEach((type, index) => {
+        typeCounters[type] = increment[index];
+      });
+
+      const incrementCounter = typeCounters[this.characters[index].type] || (() => { vazio += 1; });
+      incrementCounter();  
     }
+    
     this.tipo.push(geneticExperiment,vazio,superHuman,parasite,humanAntennae,humanEyeAnts)
+    return this.tipo;
   }
 
 }
