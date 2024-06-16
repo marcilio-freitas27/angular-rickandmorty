@@ -48,10 +48,10 @@ export class ListaComponent implements OnInit {
     }
     this.filtrarPersonagens(this.characters, this.filtro)
     this.responsiveOptions = this.chartUtil.responsiveOptions;
-    this.generos = ["Male","Female","Unknown"];
-    this.estados = ["Alive", "Dead", "Unknown"];
+    this.generos = ["Male","Female","unknown"];
+    this.estados = ["Alive", "Dead", "unknown"];
     this.especies = ["Human","Alien"];
-    this.tipos = ["Genetic experiment","Super Human","Parasite","Human with antennae","Human with ant in his eyes","Vazio"];
+    this.tipos = ["Genetic experiment","Superhuman (Ghost trains summoner)","Parasite","Human with antennae","Human with ants in his eyes",""];
     this.alterarLargura();
     this.largura = this.alterarLargura();
     window.addEventListener("resize", this.alterarLargura);

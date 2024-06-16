@@ -70,7 +70,7 @@ export class DashboardComponent implements OnInit {
     this.especies = ["Human","Alien"];
     this.basicDataEspecies = this.chartUtil.gerarChart(this.especies,'Specie',this.buscarEspecies());
 
-    this.tipos = ["Genetic experiment","Super Human","Parasite","Human with antennae","Human with ant in his eyes","Vazio"]
+    this.tipos = ["Genetic experiment","Superhuman (Ghost trains summoner)","Parasite","Human with antennae","Human with ants in his eyes","Vazio"]
     this.basicDataTipos = this.chartUtil.gerarChart(this.tipos,'Type',this.buscarTipos());
   }
 
@@ -78,10 +78,9 @@ export class DashboardComponent implements OnInit {
     let male = 0;
     let female = 0;
     let unknown = 0;
-    for (let index = 0; index < this.characters.length; index++) {
-      let gender =  this.characters[index].gender;
-      gender == "Male" ? male += 1 : (gender == "Female" ? female += 1 : unknown += 1);
-    }
+    this.characters.forEach((char) => {
+      char.gender == "Male" ? male += 1 : (char.gender == "Female" ? female += 1 : unknown += 1);
+    })
     this.genero.push(male,female, unknown);
     return this.genero;
   }
@@ -90,10 +89,9 @@ export class DashboardComponent implements OnInit {
     let alive = 0;
     let dead =  0
     let unknown = 0;
-    for (let index = 0; index < this.characters.length; index++) {
-      let status =  this.characters[index].status;
-      status == "Alive" ? alive += 1 : (status == "Dead" ? dead += 1 : unknown += 1);
-    }
+    this.characters.forEach((char) => {
+      char.status == "Alive" ? alive += 1 : (char.status == "Dead" ? dead += 1 : unknown += 1);
+    })
     this.estado.push(alive,dead, unknown);
     return this.estado;
   }
@@ -101,9 +99,9 @@ export class DashboardComponent implements OnInit {
   buscarEspecies(){
     let human = 0;
     let alien = 0;
-    for (let index = 0; index < this.characters.length; index++) {
-      this.characters[index].species == "Human" ? human += 1 : alien += 1;
-    }
+    this.characters.forEach((char) => {
+      char.species == "Human" ? human += 1 : alien += 1;
+    })
     this.especie.push(human,alien);
     return this.especie;
   }
@@ -115,19 +113,19 @@ export class DashboardComponent implements OnInit {
     let humanAntennae = 0;
     let humanEyeAnts = 0;
     let vazio = 0;
-    for (let index = 0; index < this.characters.length; index++) {
-      let types = ["Human with antennae","Human with ant in his eyes","Genetic experiment","Super Human","Parasite"]
+    this.characters.forEach((char) => {
+      let types = ["Human with antennae","Human with ants in his eyes","Genetic experiment","Superhuman (Ghost trains summoner)","Parasite", ""]
       let increment = [() => { humanAntennae += 1; },() => { humanEyeAnts += 1; },() => { geneticExperiment += 1; },() => { superHuman += 1; },() => { parasite += 1; }]
       const typeCounters:any = {};
       types.forEach((type, index) => {
         typeCounters[type] = increment[index];
       });
 
-      const incrementCounter = typeCounters[this.characters[index].type] || (() => { vazio += 1; });
+      const incrementCounter = typeCounters[char.type] || (() => { vazio += 1; });
       incrementCounter();  
-    }
+    })
     
-    this.tipo.push(geneticExperiment,vazio,superHuman,parasite,humanAntennae,humanEyeAnts)
+    this.tipo.push(geneticExperiment,superHuman,parasite,humanAntennae,humanEyeAnts,vazio)
     return this.tipo;
   }
 
