@@ -36,7 +36,8 @@ export class ListaComponent implements OnInit {
     this.especies = [];
     this.tipos = [];
     this.filtro = new BuscarPersonagensFilter();
-    this.dadosFiltro = [this.filtro]
+    this.dadosFiltro = [this.filtro];
+    this.filteredCharacters = [];
   }
 
   ngOnInit(){
