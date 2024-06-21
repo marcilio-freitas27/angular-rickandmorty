@@ -27,34 +27,44 @@ export class ChartUtil {
     }
   ];
 
-  basicOptions:any = {
-    plugins: {
+  public gerarOptions(title: string){
+    return {
+      plugins: {
         legend: {
-            labels: {
-                color: ""
-            }
+          labels: {
+              color: ""
+          }
+        },
+        title: {
+          display: true,
+          text: title,
+          padding: {
+            top: 10,
+            bottom: 30
+          }
         }
-    },
-    scales: {
+      },
+      scales: {
         y: {
-            beginAtZero: true,
-            ticks: {
-                color: ""
-            },
-            grid: {
-                color: "",
-                drawBorder: false
-            }
+          beginAtZero: true,
+          ticks: {
+            color: ""
+          },
+          grid: {
+            color: "",
+            drawBorder: false
+          }
         },
         x: {
-            ticks: {
-                color: ""
-            },
-            grid: {
-                color: "",
-                drawBorder: false
-            }
+          ticks: {
+            color: ""
+          },
+          grid: {
+            color: "",
+            drawBorder: false
+          }
         }
+      }
     }
   }
 

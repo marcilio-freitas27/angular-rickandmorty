@@ -21,18 +21,21 @@ export class DashboardComponent implements OnInit {
   especie!: number[];
   tipo!: number[];
 
-  basicOptions: any;
-  basicData: any;
-  basicDataStatus: any;
-  basicDataEspecies: any;
-  basicDataTipos: any;
+  optionsGenero: any;
+  optionsTiposGerais: any;
+  optionsEstado: any;
+  optionsEspecie: any;
+
+  dataGenero: any;
+  dataEstado: any;
+  dataEspecie: any;
+  dataTiposGerais: any;
   responsiveOptions!:any[];
   constructor(
     public chartUtil: ChartUtil,
     private api: ApiService,
   ) { 
     this.characters = [];
-    this.basicOptions = {};
     this.genero = [];
     this.estado = [];
     this.especie = [];
@@ -42,7 +45,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.buscarPersonagens();
-    this.basicOptions = this.chartUtil.basicOptions;
     this.responsiveOptions = this.chartUtil.responsiveOptions;
   }
 
@@ -62,16 +64,20 @@ export class DashboardComponent implements OnInit {
 
   gerarGraficos():void {
     this.generos = ["Male","Female","Unknown"];
-    this.basicData = this.chartUtil.gerarChart(this.generos,'Gender',this.buscarGeneros());
+    this.dataGenero = this.chartUtil.gerarChart(this.generos,'Gender',this.buscarGeneros());
+    this.optionsGenero = this.chartUtil.gerarOptions("Gêneros");
 
     this.estados = ["Alive", "Dead", "Unknown"];
-    this.basicDataStatus = this.chartUtil.gerarChart(this.estados,'Status',this.buscarEstados());
-
+    this.dataEstado = this.chartUtil.gerarChart(this.estados,'Status',this.buscarEstados());
+    this.optionsEstado = this.chartUtil.gerarOptions("Estados");
+    
     this.especies = ["Human","Alien"];
-    this.basicDataEspecies = this.chartUtil.gerarChart(this.especies,'Specie',this.buscarEspecies());
-
+    this.dataEspecie = this.chartUtil.gerarChart(this.especies,'Specie',this.buscarEspecies());
+    this.optionsEspecie = this.chartUtil.gerarOptions("Espécies");
+    
     this.tipos = ["Genetic experiment","Superhuman (Ghost trains summoner)","Parasite","Human with antennae","Human with ants in his eyes","Vazio"]
-    this.basicDataTipos = this.chartUtil.gerarChart(this.tipos,'Type',this.buscarTipos());
+    this.dataTiposGerais = this.chartUtil.gerarChart(this.tipos,'Type',this.buscarTipos());
+    this.optionsTiposGerais = this.chartUtil.gerarOptions("Tipos Gerais");
   }
 
   buscarGeneros():number[]{
