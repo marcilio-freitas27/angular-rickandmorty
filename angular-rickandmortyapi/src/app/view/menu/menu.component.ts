@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class MenuComponent implements OnInit {
 
-  usuarioLogado:any
+  usuarioLogado!:string | null;
   usuarioImagem!: string;
   menuImagem!: string;
   constructor(
@@ -41,7 +41,7 @@ export class MenuComponent implements OnInit {
     return this.loginService.buscarUsuario();
   }
 
-  logout(){
+  logout():void{
     localStorage.clear();
     this.router.navigate(["login"]);
   }

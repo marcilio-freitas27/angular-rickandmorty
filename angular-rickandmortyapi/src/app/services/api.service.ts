@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Character } from '../models/character.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +16,12 @@ export class ApiService {
     this.url = "https://rickandmortyapi.com/api/";
   }
 
-  buscarPersonagens(){
-    return this.http.get<any[]>(this.url + ApiService.ENDPOINT);
+  buscarPersonagens():Observable<Character[]>{
+    return this.http.get<Character[]>(this.url + ApiService.ENDPOINT);
   }
 
-  buscarPersonagensPorId(id: number){
-    return this.http.get<any>(this.url + ApiService.ENDPOINT + "/" + id);
+  buscarPersonagensPorId(id: number):Observable<Character>{
+    return this.http.get<Character>(this.url + ApiService.ENDPOINT + "/" + id);
   }
 
 }

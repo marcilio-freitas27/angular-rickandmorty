@@ -17,11 +17,11 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login(user: any, pass: any){
+  login(user: string, pass: string):void{
     this.loginService.login(user, pass);
   }
 
-  logout(){
+  logout():void{
     this.loginService.logout();
   }
 

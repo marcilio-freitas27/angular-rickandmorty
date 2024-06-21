@@ -15,16 +15,14 @@ import { ChartUtil } from 'src/app/util/chart.util';
 export class ListaComponent implements OnInit {
 
   characters!: Character[];
-
   filtro!: BuscarPersonagensFilter;
-  generos!: any[];
-  estados!: any[];
-  especies!: any[];
-  tipos!: any[];
+  generos!: string[];
+  estados!: string[];
+  especies!: string[];
+  tipos!: string[];
   filteredCharacters!: Character[];
-  dadosFiltro!: any[];
   responsiveOptions!:any[];
-  largura: any;
+  largura!: number;
 
   constructor(
     private api: ApiService,
@@ -36,7 +34,6 @@ export class ListaComponent implements OnInit {
     this.especies = [];
     this.tipos = [];
     this.filtro = new BuscarPersonagensFilter();
-    this.dadosFiltro = [this.filtro];
     this.filteredCharacters = [];
   }
 
@@ -58,16 +55,16 @@ export class ListaComponent implements OnInit {
     window.addEventListener("resize", this.alterarLargura);
   }
 
-  alterarLargura(){
+  alterarLargura():number {
     this.largura = window.innerWidth;
     return this.largura;
   }
 
-  buscarUsuarioLogado(){
+  buscarUsuarioLogado():void{
     this.loginService.buscarUsuario();
   }
 
-  personagensFiltrados(personagens: Character[], filtro: BuscarPersonagensFilter){
+  personagensFiltrados(personagens: Character[], filtro: BuscarPersonagensFilter):void{
     this.filteredCharacters = this.filtrarPersonagens(personagens, filtro)
   }
 
@@ -79,18 +76,18 @@ export class ListaComponent implements OnInit {
       return personagens;
     }
 
-    return personagens.filter(personagem => {
-      const correspondeGenero = filtro.genero ? personagem.gender === filtro.genero : true;
-      const correspondeEstado = filtro.estado ? personagem.status === filtro.estado : true;
-      const correspondeEspecie = filtro.especie ? personagem.species === filtro.especie : true;
-      const correspondeTipo = filtro.tipo ? personagem.type === filtro.tipo : true;
+    return personagens.filter((personagem:Character):boolean => {
+      const correspondeGenero:boolean = filtro.genero ? personagem.gender === filtro.genero : true;
+      const correspondeEstado:boolean = filtro.estado ? personagem.status === filtro.estado : true;
+      const correspondeEspecie:boolean = filtro.especie ? personagem.species === filtro.especie : true;
+      const correspondeTipo:boolean = filtro.tipo ? personagem.type === filtro.tipo : true;
 
       return correspondeGenero && correspondeEstado && correspondeEspecie && correspondeTipo;
     });
   }
 
 
-  buscarPersonagens(){
+  buscarPersonagens():void{
     this.api.buscarPersonagens().subscribe(
       {
         next: (data: any) => {
@@ -105,7 +102,7 @@ export class ListaComponent implements OnInit {
     )
   }
 
-  buscarInformacoesPorIf(id:number){
+  buscarInformacoesPorIf(id:number):number{
     return id;
   }
 

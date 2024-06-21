@@ -7,9 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent{
 
-  title = 'angular-rickandmortyapi';
+  title:string = 'angular-rickandmortyapi';
   usuarioLogado:any;
-  ano:any = new Date().getFullYear();
+  ano:number = new Date().getFullYear();
   constructor(){
     this.usuarioLogado = localStorage.getItem("buscaUsuarioFilter");
   }

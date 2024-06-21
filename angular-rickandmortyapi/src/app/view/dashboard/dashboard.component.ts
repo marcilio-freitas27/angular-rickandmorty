@@ -46,7 +46,7 @@ export class DashboardComponent implements OnInit {
     this.responsiveOptions = this.chartUtil.responsiveOptions;
   }
 
-  buscarPersonagens(){
+  buscarPersonagens():void{
     this.api.buscarPersonagens().subscribe(
       {
         next: (data: any) => {
@@ -60,7 +60,7 @@ export class DashboardComponent implements OnInit {
     )
   }
 
-  gerarGraficos() {
+  gerarGraficos():void {
     this.generos = ["Male","Female","Unknown"];
     this.basicData = this.chartUtil.gerarChart(this.generos,'Gender',this.buscarGeneros());
 
@@ -74,7 +74,7 @@ export class DashboardComponent implements OnInit {
     this.basicDataTipos = this.chartUtil.gerarChart(this.tipos,'Type',this.buscarTipos());
   }
 
-  buscarGeneros(){
+  buscarGeneros():number[]{
     let male = 0;
     let female = 0;
     let unknown = 0;
@@ -85,7 +85,7 @@ export class DashboardComponent implements OnInit {
     return this.genero;
   }
 
-  buscarEstados(){
+  buscarEstados():number[]{
     let alive = 0;
     let dead =  0
     let unknown = 0;
@@ -96,7 +96,7 @@ export class DashboardComponent implements OnInit {
     return this.estado;
   }
 
-  buscarEspecies(){
+  buscarEspecies():number[]{
     let human = 0;
     let alien = 0;
     this.characters.forEach((char) => {
@@ -106,7 +106,7 @@ export class DashboardComponent implements OnInit {
     return this.especie;
   }
 
-  buscarTipos(){
+  buscarTipos():number[]{
     let geneticExperiment = 0;
     let superHuman = 0;
     let parasite = 0;

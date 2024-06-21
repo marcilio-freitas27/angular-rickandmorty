@@ -12,18 +12,18 @@ export class LoginService {
     return localStorage.getItem('buscaUsuarioFilter');
   }
 
-  alterarUsuario(usuario:any){
+  alterarUsuario(usuario:any):void{
     localStorage.setItem('buscaUsuarioFilter',usuario);
   }
 
-  login(user: any, pass: any){
+  login(user: string, pass: string):void{
     if(user === 'usuario' && pass !== ""){
       this.alterarUsuario(user);
       this.router.navigate(['']);
     }
   }
 
-  logout(){
+  logout():void{
     localStorage.removeItem('buscaUsuarioFilter');
     this.router.navigate(['login']);
   }

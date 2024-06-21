@@ -52,7 +52,7 @@ export class ListaDetalhesComponent implements OnInit {
     return this.loginService.buscarUsuario();
   }
 
-  buscarInformacoesPorId(id: number){
+  buscarInformacoesPorId(id: number):void{
     this.api.buscarPersonagensPorId(id).subscribe(
       {
         next: (data: any) => {
@@ -65,7 +65,7 @@ export class ListaDetalhesComponent implements OnInit {
     )
   }
 
-  voltar(){
+  voltar():void{
     this.location.back();
   }
 
