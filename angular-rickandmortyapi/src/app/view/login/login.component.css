@@ -10,6 +10,7 @@
   padding-left: 50px;
   padding-right: 50px;
   margin-top: 12.5em;
+  box-shadow: 0px 0px 0px 3px rgba(0, 0, 0, 0.2);
 }
 
 .btn-color{
@@ -17,12 +18,15 @@
 }
 
 :host{
-  background:url("../../../assets/images/rick-morty-background.png")repeat center center fixed;
   position: fixed;
   top:0;
   left: 0;
   width: 100vw;
   height: 100vh;
+}
+
+.background-img{
+  background: url("../../../assets/images/rick-morty-background.png")no-repeat center 100%;
 }
 
 h2, h3{

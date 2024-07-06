@@ -75,7 +75,14 @@ export class DashboardComponent implements OnInit {
     this.dataEspecie = this.chartUtil.gerarChart(this.especies,'Specie',this.buscarEspecies());
     this.optionsEspecie = this.chartUtil.gerarOptions("Espécies");
     
-    this.tipos = ["Genetic experiment","Superhuman (Ghost trains summoner)","Parasite","Human with antennae","Human with ants in his eyes","Vazio"]
+    this.tipos = [
+      "Genetic experiment",
+      "Superhuman (Ghost trains summoner)",
+      "Parasite",
+      "Human with antennae",
+      "Human with ants in his eyes",
+      "Vazio"
+    ]
     this.dataTiposGerais = this.chartUtil.gerarChart(this.tipos,'Type',this.buscarTipos());
     this.optionsTiposGerais = this.chartUtil.gerarOptions("Tipos Gerais");
   }
@@ -120,8 +127,21 @@ export class DashboardComponent implements OnInit {
     let humanEyeAnts = 0;
     let vazio = 0;
     this.characters.forEach((char) => {
-      let types = ["Human with antennae","Human with ants in his eyes","Genetic experiment","Superhuman (Ghost trains summoner)","Parasite", ""]
-      let increment = [() => { humanAntennae += 1; },() => { humanEyeAnts += 1; },() => { geneticExperiment += 1; },() => { superHuman += 1; },() => { parasite += 1; }]
+      let types = [
+        "Human with antennae",
+        "Human with ants in his eyes",
+        "Genetic experiment",
+        "Superhuman (Ghost trains summoner)",
+        "Parasite", 
+        ""
+      ]
+      let increment = [
+        () => { humanAntennae += 1; },
+        () => { humanEyeAnts += 1; },
+        () => { geneticExperiment += 1; },
+        () => { superHuman += 1; },
+        () => { parasite += 1; }
+      ]
       const typeCounters:any = {};
       types.forEach((type, index) => {
         typeCounters[type] = increment[index];

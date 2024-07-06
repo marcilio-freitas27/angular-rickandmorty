@@ -1,8 +1,8 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Character } from 'src/app/models/character.model';
 import { ApiService } from 'src/app/services/api.service';
-import { Location } from '@angular/common';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -18,7 +18,8 @@ export class ListaDetalhesComponent implements OnInit {
     private api: ApiService,
     private active: ActivatedRoute,
     private location: Location,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private router: Router
   ) {
       this.character = {
         id: 1,
@@ -45,7 +46,12 @@ export class ListaDetalhesComponent implements OnInit {
   ngOnInit() {
     this.buscarUsuarioLogado();
     let id = this.active.snapshot.paramMap.get('id');
-    this.buscarInformacoesPorId(Number(id))
+    this.buscarInformacoesPorId(Number(id));
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+      }
+    });
   }
 
   buscarUsuarioLogado(){
