@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from 'src/app/services/login.service';
+import { NavigationEnd, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
-import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 
 
 @Component({
@@ -25,6 +25,11 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
     this.usuarioLogado = this.buscarUsuario();
     this.buscarImagens();
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+      }
+    });
     
   }
 
