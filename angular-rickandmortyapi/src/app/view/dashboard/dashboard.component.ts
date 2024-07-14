@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Character } from 'src/app/models/character.model';
 import { ApiService } from 'src/app/services/api.service';
 import { ChartUtil } from 'src/app/util/chart.util';
-
+import { ToastUtil } from 'src/app/util/toast.util';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -33,6 +33,7 @@ export class DashboardComponent implements OnInit {
   responsiveOptions!:any[];
   constructor(
     public chartUtil: ChartUtil,
+    public toastUtil: ToastUtil,
     private api: ApiService,
   ) { 
     this.characters = [];
@@ -48,15 +49,17 @@ export class DashboardComponent implements OnInit {
     this.responsiveOptions = this.chartUtil.responsiveOptions;
   }
 
+
   buscarPersonagens():void{
     this.api.buscarPersonagens().subscribe(
       {
         next: (data: any) => {
           this.characters = data.results;
           this.gerarGraficos();
+          this.toastUtil.carregarDadosSucesso();
         },
         error: (err: any) => {
-          console.log(err)
+          this.toastUtil.carregarDadosFalha();
         }
       }
     )

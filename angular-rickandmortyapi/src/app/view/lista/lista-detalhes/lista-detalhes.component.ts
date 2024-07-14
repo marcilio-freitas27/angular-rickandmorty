@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Character } from 'src/app/models/character.model';
 import { ApiService } from 'src/app/services/api.service';
 import { LoginService } from 'src/app/services/login.service';
+import { ToastUtil } from 'src/app/util/toast.util';
 
 @Component({
   selector: 'app-lista-detalhes',
@@ -19,6 +20,7 @@ export class ListaDetalhesComponent implements OnInit {
     private active: ActivatedRoute,
     private location: Location,
     private loginService: LoginService,
+    public toast: ToastUtil
   ) {
       this.character = {
         id: 1,
@@ -57,9 +59,10 @@ export class ListaDetalhesComponent implements OnInit {
       {
         next: (data: any) => {
           this.character = data;
+          this.toast.carregarDadosSucesso();
         },
         error: (err: any) => {
-          console.log(err)
+          this.toast.carregarDadosFalha()
         }
       }
     )

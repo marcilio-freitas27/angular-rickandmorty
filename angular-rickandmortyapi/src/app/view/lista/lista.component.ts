@@ -4,6 +4,7 @@ import { BuscarPersonagensFilter } from 'src/app/models/filter/buscar-personagen
 import { ApiService } from 'src/app/services/api.service';
 import { LoginService } from 'src/app/services/login.service';
 import { ChartUtil } from 'src/app/util/chart.util';
+import { ToastUtil } from 'src/app/util/toast.util';
 
 @Component({
   selector: 'app-lista',
@@ -27,7 +28,9 @@ export class ListaComponent implements OnInit {
   constructor(
     private api: ApiService,
     private loginService: LoginService,
-    public chartUtil: ChartUtil){
+    public chartUtil: ChartUtil,
+    public toast: ToastUtil,
+  ){
     this.characters = [];
     this.generos = [];
     this.estados = [];
@@ -64,8 +67,20 @@ export class ListaComponent implements OnInit {
     this.loginService.buscarUsuario();
   }
 
-  personagensFiltrados(personagens: Character[], filtro: BuscarPersonagensFilter):void{
+  async personagensFiltrados(personagens: Character[], filtro: BuscarPersonagensFilter):Promise<void>{
+    let time = setTimeout(()=>{
+      let buscarSpinner = document.getElementById("buscarFiltro") as HTMLElement;
+      let body = document.getElementById("body") as HTMLElement;
+      buscarSpinner.style.display = "flex";
+      buscarSpinner.style.justifyContent = "center";
+      buscarSpinner.style.zIndex = "2";
+      body.style.zIndex = "1";
+      body.style.backgroundColor = "rgba(0,0,0,0.2)";
+    }, 5);
+    
+    await new Promise(resolve => setTimeout(resolve, 10));
     this.filteredCharacters = this.filtrarPersonagens(personagens, filtro)
+    clearTimeout(time);
   }
 
   filtrarPersonagens(personagens: Character[], filtro: BuscarPersonagensFilter): Character[] {
@@ -93,10 +108,11 @@ export class ListaComponent implements OnInit {
         next: (data: any) => {
           this.characters = data.results;
           this.filteredCharacters = data.results;
-          this.personagensFiltrados(data.results, this.filtro);
+          // this.personagensFiltrados(data.results, this.filtro);
+          this.toast.carregarDadosSucesso();
         },
         error: (err: any) => {
-          console.log(err)
+          this.toast.carregarDadosFalha()
         }
       }
     )

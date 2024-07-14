@@ -1,56 +1,68 @@
-<app-menu></app-menu>
-<div class="html image-background mt-5">
-    <div class="body m-3">
-      <p-panel header="Filtro" [toggleable]="true" styleClass="mt-5">
-          <div class="gap-10 p-fluid">
-            <div class="d-flex dash">
-              <div class="m-2 w-50">
-                <ng-select name="genero" [(ngModel)]="filtro.genero" [items]="generos" [multiple]="false" placeholder="Genero" data-live-search="true">
-                </ng-select>
-              </div>
-              <div class="m-2 w-50">
-                <ng-select name="estado" [(ngModel)]="filtro.estado" [items]="estados" [multiple]="false" placeholder="Estado" data-live-search="true">
-            </ng-select>
-              </div>
-              <div class="m-2 w-50">
-                <ng-select name="especie" [(ngModel)]="filtro.especie" [items]="especies" [multiple]="false" placeholder="Especie" data-live-search="true">
-                </ng-select>
-              </div>
-              <div class="m-2 w-50">
-                <ng-select name="tipo" [(ngModel)]="filtro.tipo" [items]="tipos" [multiple]="false" placeholder="Tipos" data-live-search="true">
-            </ng-select>
-              </div>
-              <div class="m-1 w-50">
-                <button pButton label="Buscar" class="btn-color"
-                [disabled]="false" (click)="personagensFiltrados(characters, filtro)"></button>
+
+<div id="body">
+  <app-menu></app-menu>
+  <div class="html image-background mt-5">
+      <div class="body m-3">
+        <p-panel header="Filtro" [toggleable]="true" styleClass="mt-5">
+            <div class="gap-10 p-fluid">
+              <div class="d-flex dash">
+                <div class="m-2 w-50">
+                  <ng-select name="genero" [(ngModel)]="filtro.genero" [items]="generos" [multiple]="false" placeholder="Genero" data-live-search="true">
+                  </ng-select>
+                </div>
+                <div class="m-2 w-50">
+                  <ng-select name="estado" [(ngModel)]="filtro.estado" [items]="estados" [multiple]="false" placeholder="Estado" data-live-search="true">
+              </ng-select>
+                </div>
+                <div class="m-2 w-50">
+                  <ng-select name="especie" [(ngModel)]="filtro.especie" [items]="especies" [multiple]="false" placeholder="Especie" data-live-search="true">
+                  </ng-select>
+                </div>
+                <div class="m-2 w-50">
+                  <ng-select name="tipo" [(ngModel)]="filtro.tipo" [items]="tipos" [multiple]="false" placeholder="Tipos" data-live-search="true">
+              </ng-select>
+                </div>
+                <div class="m-1 w-50">
+                  <button pButton label="Buscar" class="btn-color"
+                  [disabled]="false" (click)="personagensFiltrados(characters, filtro)"></button>
+                </div>
               </div>
             </div>
-          </div>
+          </p-panel>
+      </div>
+  
+      <div id="buscarFiltro" style="display:none;">
+        <button class="btn btn-primary" type="button" disabled>
+          <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+          <span role="status"> Buscando filtros...</span>
+        </button>
+      </div>
+  
+      <div class="m-3">
+        <h2 id="personagens"></h2>
+        <p-panel header="Personagens" [toggleable]="true">
+          <p-carousel [value]="filteredCharacters" [numVisible]="3" [numScroll]="3" [circular]="true" autoPlayInterval="3000"
+          [responsiveOptions]="responsiveOptions" [ngClass]="{'size': (filteredCharacters.length == 1)}">
+            <ng-template let-characters pTemplate="item">
+                <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
+                    <div class="mb-3">
+                        <img [src]="characters.image" [alt]="characters.name" class="w-6 shadow-2" />
+                    </div>
+                    <div>
+                        <h4 class="mb-1">{{ characters.name }}</h4>
+                        <div class="car-buttons mt-5">
+                            <button pButton class="btn-color" [routerLink]="['/character',buscarInformacoesPorIf(characters.id)]" type="button" styleClass="p-button p-button-rounded mr-2" icon="pi pi-search" pTooltip="Ver informações do personagem" tooltipPosition="top"></button>
+                        </div>
+                    </div>
+  
+                </div>
+            </ng-template>
+          </p-carousel>
         </p-panel>
-    </div>
-
-    <div class="m-3">
-      <h2 id="personagens"></h2>
-      <p-panel header="Personagens" [toggleable]="true">
-        <p-carousel [value]="filteredCharacters" [numVisible]="3" [numScroll]="3" [circular]="true" autoPlayInterval="3000"
-        [responsiveOptions]="responsiveOptions" [ngClass]="{'size': (filteredCharacters.length == 1)}">
-          <ng-template let-characters pTemplate="item">
-              <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
-                  <div class="mb-3">
-                      <img [src]="characters.image" [alt]="characters.name" class="w-6 shadow-2" />
-                  </div>
-                  <div>
-                      <h4 class="mb-1">{{ characters.name }}</h4>
-                      <div class="car-buttons mt-5">
-                          <button pButton class="btn-color" [routerLink]="['/character',buscarInformacoesPorIf(characters.id)]" type="button" styleClass="p-button p-button-rounded mr-2" icon="pi pi-search" pTooltip="Ver informações do personagem" tooltipPosition="top"></button>
-                      </div>
-                  </div>
-
-              </div>
-          </ng-template>
-        </p-carousel>
-      </p-panel>
-    </div>
+      </div>
+  </div>
+  
+  <app-toast></app-toast>
+  
+  <app-footer></app-footer>
 </div>
-
-<app-footer></app-footer>

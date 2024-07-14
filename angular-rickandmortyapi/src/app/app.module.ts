@@ -1,36 +1,36 @@
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
 
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
 
-import { DataViewModule, DataViewLayoutOptions } from 'primeng/dataview';
-import { RatingModule } from 'primeng/rating';
-import { TagModule } from 'primeng/tag';
-import { DropdownModule } from 'primeng/dropdown';
-import { ButtonModule } from 'primeng/button';
-import {CardModule} from 'primeng/card';
 import { SharedModule } from 'primeng/api';
-import { ChartModule } from 'primeng/chart';
-import { PanelModule } from 'primeng/panel';
+import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
 import { CarouselModule } from 'primeng/carousel';
-import { TooltipModule } from 'primeng/tooltip';
+import { ChartModule } from 'primeng/chart';
+import { DataViewLayoutOptions, DataViewModule } from 'primeng/dataview';
+import { DropdownModule } from 'primeng/dropdown';
+import { PanelModule } from 'primeng/panel';
+import { RatingModule } from 'primeng/rating';
 import { TableModule } from 'primeng/table';
+import { TagModule } from 'primeng/tag';
+import { TooltipModule } from 'primeng/tooltip';
 
+import { DashboardComponent } from './view/dashboard/dashboard.component';
+import { FooterComponent } from './view/footer/footer.component';
+import { ListaDetalhesComponent } from './view/lista/lista-detalhes/lista-detalhes.component';
+import { ListaComponent } from './view/lista/lista.component';
 import { LoginComponent } from './view/login/login.component';
 import { MenuComponent } from './view/menu/menu.component';
-import { DashboardComponent } from './view/dashboard/dashboard.component'
-import { ListaComponent } from './view/lista/lista.component';
-import { ListaDetalhesComponent } from './view/lista/lista-detalhes/lista-detalhes.component';
 import { PerfilComponent } from './view/perfil/perfil.component';
-
+import { ToastComponent } from './view/toast/toast/toast.component';
 
 import { NgSelectModule } from '@ng-select/ng-select';
-import { FooterComponent } from './view/footer/footer.component';
+
 
 @NgModule({
   declarations: [
@@ -41,7 +41,8 @@ import { FooterComponent } from './view/footer/footer.component';
     MenuComponent,
     PerfilComponent,
     DashboardComponent,
-    FooterComponent
+    FooterComponent,
+    ToastComponent
   ],
   imports: [
     BrowserModule,
