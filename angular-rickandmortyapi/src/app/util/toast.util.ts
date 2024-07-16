@@ -22,6 +22,22 @@ export class ToastUtil {
         },5);
     }
 
+    async loginSucesso(){
+        let timeout = setTimeout(() => {
+            const toastSucces = document.getElementById('loginSuccess') as HTMLElement;
+            const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastSucces);
+            toastBootstrap.show();    
+        },3);
+    }
+
+    async loginFalha(){
+        let timeout = setTimeout(() => {
+            const toastError = document.getElementById('loginError') as HTMLElement;
+            const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastError);
+            toastBootstrap.show();    
+        },3);
+    }
+
     async limparTimeOut(timeout: NodeJS.Timeout){
         clearTimeout(timeout);
     }

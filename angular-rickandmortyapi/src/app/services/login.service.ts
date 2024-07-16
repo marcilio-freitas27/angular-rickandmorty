@@ -1,5 +1,5 @@
-import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +16,13 @@ export class LoginService {
     localStorage.setItem('buscaUsuarioFilter',usuario);
   }
 
-  login(user: string, pass: string):void{
+  login(user: string, pass: string):boolean{
     if(user === 'usuario' && pass !== ""){
       this.alterarUsuario(user);
       this.router.navigate(['']);
+      return true;
+    }else {
+      return false;
     }
   }
 

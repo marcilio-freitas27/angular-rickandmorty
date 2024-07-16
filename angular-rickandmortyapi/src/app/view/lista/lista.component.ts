@@ -68,19 +68,19 @@ export class ListaComponent implements OnInit {
   }
 
   async personagensFiltrados(personagens: Character[], filtro: BuscarPersonagensFilter):Promise<void>{
-    let time = setTimeout(()=>{
-      let buscarSpinner = document.getElementById("buscarFiltro") as HTMLElement;
-      let body = document.getElementById("body") as HTMLElement;
-      buscarSpinner.style.display = "flex";
-      buscarSpinner.style.justifyContent = "center";
-      buscarSpinner.style.zIndex = "2";
-      body.style.zIndex = "1";
-      body.style.backgroundColor = "rgba(0,0,0,0.2)";
-    }, 5);
+    // let time = setTimeout(()=>{
+    //   let buscarSpinner = document.getElementById("buscarFiltro") as HTMLElement;
+    //   let body = document.getElementById("body") as HTMLElement;
+    //   buscarSpinner.style.display = "flex";
+    //   buscarSpinner.style.justifyContent = "center";
+    //   buscarSpinner.style.zIndex = "2";
+    //   body.style.zIndex = "1";
+    //   body.style.backgroundColor = "rgba(0,0,0,0.2)";
+    // }, 5);
     
     await new Promise(resolve => setTimeout(resolve, 10));
     this.filteredCharacters = this.filtrarPersonagens(personagens, filtro)
-    clearTimeout(time);
+    // clearTimeout(time);
   }
 
   filtrarPersonagens(personagens: Character[], filtro: BuscarPersonagensFilter): Character[] {

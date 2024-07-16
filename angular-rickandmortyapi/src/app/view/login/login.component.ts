@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
+import { ToastUtil } from 'src/app/util/toast.util';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +11,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private loginService: LoginService,
+    public toastUtil: ToastUtil,
   ) {
 
   }
@@ -18,7 +20,13 @@ export class LoginComponent implements OnInit {
   }
 
   login(user: string, pass: string):void{
-    this.loginService.login(user, pass);
+    let logado = this.loginService.login(user, pass);
+    if(logado){
+      this.toastUtil.loginSucesso();
+    }else{
+      this.toastUtil.loginFalha();
+    }
+    
   }
 
   logout():void{
