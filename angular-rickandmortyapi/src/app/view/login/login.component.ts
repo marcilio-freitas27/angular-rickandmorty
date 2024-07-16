@@ -9,6 +9,8 @@ import { ToastUtil } from 'src/app/util/toast.util';
 })
 export class LoginComponent implements OnInit {
 
+  mensagem!: string;
+  mensagemFalha!: string;
   constructor(
     private loginService: LoginService,
     public toastUtil: ToastUtil,
@@ -17,6 +19,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.mensagem = "Teste";
   }
 
   login(user: string, pass: string):void{

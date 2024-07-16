@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-toast',
@@ -9,7 +9,11 @@ export class ToastComponent implements OnInit {
 
   constructor() { }
 
+  @Input() mensagem!: string;
+  @Input() mensagemFalha!: string;
   ngOnInit() {
+    this.mensagem = "Dados carregados.";
+    this.mensagemFalha = "Falha ao carregador os dados";
   }
 
 }

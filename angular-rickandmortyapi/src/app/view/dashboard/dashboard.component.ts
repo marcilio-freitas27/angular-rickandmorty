@@ -34,6 +34,10 @@ export class DashboardComponent implements OnInit {
     public dataUtil:DataUtil,
   ) { 
     this.characters = [];
+    this.generos = [];
+      this.estados = [];
+      this.especies = [];
+      this.tipos = [];
   }
 
   ngOnInit() {
@@ -60,7 +64,6 @@ export class DashboardComponent implements OnInit {
   gerarGraficos():void {
     this.generos = ["Male","Female","Unknown"];
     this.dataGenero = this.chartUtil.gerarChart(this.generos,'Gender',this.dataUtil.buscarGeneros(this.characters));
-    console.log(this.dataGenero)
     this.optionsGenero = this.chartUtil.gerarOptions("Gêneros");
 
     this.estados = ["Alive", "Dead", "Unknown"];
