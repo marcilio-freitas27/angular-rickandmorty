@@ -19,17 +19,17 @@
       <form class="d-flex dropstart" role="search">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item dropdown">
-            <a class="text-black nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+            <a class="text-black nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"  (click)="expandMenuDesktop()">
               <img [src]="usuarioImagem" class="rounded-circle" width="50" height="50" alt="...">
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu" id="menu-desktop">
               <li>
-                <a class="dropdown-item disabled" href="#">{{ usuarioLogado | titlecase }}</a>
+                <a class="dropdown-item disabled" >{{ usuarioLogado | titlecase }}</a>
               </li>
               <li><hr class="text-black dropdown-divider"></li>
               <li><a class="text-black dropdown-item" routerLink="/perfil">Perfil</a></li>
               <li><hr class="text-black dropdown-divider"></li>
-              <li><a class="text-black dropdown-item" href="#" (click)="logout()" >Sair</a></li>
+              <li><a class="text-black dropdown-item" (click)="logout()" >Sair</a></li>
             </ul>
           </li>
         </ul>
@@ -44,7 +44,7 @@
       <img [src]="usuarioImagem" class="rounded-circle w-25 mx-auto d-block" alt="...">
 
     <h5 id="offcanvasRightLabel">
-      <a class="text-black dropdown-item disabled text-center" href="#">{{ usuarioLogado | titlecase }}</a>
+      <a class="text-black dropdown-item disabled text-center" >{{ usuarioLogado | titlecase }}</a>
     </h5>
   </div>
   <div class="ml-3 mr-3">
@@ -64,7 +64,7 @@
         <a class="text-black nav-link active" aria-current="page" routerLink="/character">Personagens</a>
       </li>
       <li><hr class="text-black"></li>
-      <li><a class="text-black dropdown-item" href="#" (click)="logout()" >Sair</a></li>
+      <li><a class="text-black dropdown-item" (click)="logout()" >Sair</a></li>
     </ul>
   </div>
 </div>

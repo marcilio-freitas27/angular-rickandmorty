@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { ApiService } from 'src/app/services/api.service';
-import { LoginService } from 'src/app/services/login.service';
+import {Component,OnInit} from '@angular/core';
+import {NavigationEnd,Router} from '@angular/router';
+import {ApiService} from 'src/app/services/api.service';
+import {LoginService} from 'src/app/services/login.service';
 
 
 @Component({
@@ -51,5 +51,16 @@ export class MenuComponent implements OnInit {
     this.router.navigate(["login"]);
   }
 
+  expandMenuDesktop(){
+    let menu = document.getElementById("menu-desktop") as HTMLElement;
+    menu.style.position = "absolute";
+    menu.style.top = "10px";
+    menu.style.right = "75px";
 
+    if(menu.style.display != "block"){
+      menu.style.display = "block";
+    }else {
+      menu.style.display = "none";
+    }
+  }
 }
