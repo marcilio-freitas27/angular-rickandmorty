@@ -30,6 +30,8 @@ import { PerfilComponent } from './view/perfil/perfil.component';
 import { ToastComponent } from './view/toast/toast/toast.component';
 
 import { NgSelectModule } from '@ng-select/ng-select';
+import { LocalizacoesComponent } from './view/localizacoes/localizacoes.component';
+import { LocalizacaoComponent } from './view/localizacoes/localizacao/localizacao.component';
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
     PerfilComponent,
     DashboardComponent,
     FooterComponent,
-    ToastComponent
+    ToastComponent,
+    LocalizacoesComponent,
+    LocalizacaoComponent
   ],
   imports: [
     BrowserModule,

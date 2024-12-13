@@ -102,8 +102,12 @@ body{
   }
 }
 
-.app-container{ 
+.app-container{
   display: grid !important;
   min-height: 100% !important;
   grid-template-rows: auto 1fr auto !important;
+}
+
+.p-panel .p-panel-content {
+  padding: 0 !important;
 }

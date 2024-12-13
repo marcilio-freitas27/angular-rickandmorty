@@ -1,0 +1,41 @@
+
+<div id="body">
+  <app-menu></app-menu>
+  <div class="html image-background mt-5">
+    <div class="body m-3">
+      <p-panel header="Locations" [toggleable]="true" styleClass="mt-5">
+        <p-table [value]="locations" [tableStyle]="{'min-width': '60rem'}">
+
+          <ng-template pTemplate="header">
+              <tr>
+                  <th>Name</th>
+                  <th>Residents</th>
+                  <th>Type</th>
+                  <th>Dimension</th>
+                  <th>Url</th>
+                  <th>Created</th>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-locations>
+              <tr>
+                  <td [routerLink]="['/location',buscarInformacoesPorIf(locations.id)]" pTooltip="Ver informações todas as residências" tooltipPosition="top">{{locations.name}}</td>
+                  <td>{{locations.residents.length}}</td>
+                  <td>{{locations.type}}</td>
+                  <td>{{locations.dimension}}</td>
+                  <td>{{locations.url}}</td>
+                  <td>{{locations.created}}</td>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="summary">
+              <div class="flex align-items-center justify-content-between">
+
+              </div>
+          </ng-template>
+        </p-table>
+      </p-panel>
+    </div>
+  </div>
+  <app-toast></app-toast>
+
+  <app-footer></app-footer>
+</div>
