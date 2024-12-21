@@ -32,6 +32,8 @@ import { ToastComponent } from './view/toast/toast/toast.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { LocalizacoesComponent } from './view/localizacoes/localizacoes.component';
 import { LocalizacaoComponent } from './view/localizacoes/localizacao/localizacao.component';
+import { EpisodiosComponent } from './view/episodios/episodios.component';
+import { EpisodioComponent } from './view/episodios/episodio/episodio.component';
 
 
 @NgModule({
@@ -46,7 +48,9 @@ import { LocalizacaoComponent } from './view/localizacoes/localizacao/localizaca
     FooterComponent,
     ToastComponent,
     LocalizacoesComponent,
-    LocalizacaoComponent
+    LocalizacaoComponent,
+    EpisodiosComponent,
+    EpisodioComponent
   ],
   imports: [
     BrowserModule,
