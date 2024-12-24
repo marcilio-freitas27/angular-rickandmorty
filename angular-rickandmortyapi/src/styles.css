@@ -111,3 +111,9 @@ body{
 .p-panel .p-panel-content {
   padding: 0 !important;
 }
+
+.grid {
+  display: flex;
+  justify-items: center;
+  justify-content: center;
+}

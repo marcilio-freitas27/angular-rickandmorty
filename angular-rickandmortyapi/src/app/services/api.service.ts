@@ -44,4 +44,8 @@ export class ApiService {
     return this.http.get<Episode>(this.url + ApiService.EPISODE + "/" + id);
   }
 
+  buscarPersonagemPorUrl(url: string): Observable<Character> {
+    return this.http.get<Character>(url);
+  }
+
 }
