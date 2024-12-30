@@ -10,6 +10,7 @@ import {Location} from './../../models/location.model';
 export class LocalizacoesComponent {
 
   locations: Location[];
+  name!: string;
   constructor(
     public apiService: ApiService,
   ){
@@ -35,6 +36,22 @@ export class LocalizacoesComponent {
 
   buscarInformacoesPorIf(id:number):number{
     return id;
+  }
+
+  buscarLocationPorNome(name: string){
+    this.apiService.buscarLocationPorNome(name).subscribe({
+      next: (data: any) => {
+        if(name){
+          this.locations = data.results;
+        }else{
+          this.buscarLocalizacoes();
+        }
+      },
+      error: (err) => {
+        console.error(err.status,err.error.error);
+        this.locations = [];
+      }
+    })
   }
 
 }

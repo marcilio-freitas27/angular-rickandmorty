@@ -36,6 +36,10 @@ export class ApiService {
     return this.http.get<Location>(this.url + ApiService.LOCATION + "/" + id);
   }
 
+  buscarLocationPorNome(name: string):Observable<Location>{
+    return this.http.get<Location>(this.url + ApiService.LOCATION + "?name=" + name);
+  }
+
   buscarEpisodios():Observable<Episode[]>{
     return this.http.get<Episode[]>(this.url + ApiService.EPISODE);
   }

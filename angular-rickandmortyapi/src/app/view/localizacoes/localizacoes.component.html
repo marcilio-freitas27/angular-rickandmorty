@@ -3,6 +3,15 @@
   <app-menu></app-menu>
   <div class="html image-background mt-5">
     <div class="body m-3">
+      <p-panel header="Filter" [toggleable]="true" styleClass="mt-5">
+        <div class="m-3">
+          <div class="form-group m-1 d-flex">
+            <input pInput class="form-control" type="text" #name name="name" id="name">
+            <button pButton label="Buscar" class="btn-color ml-5"
+            [disabled]="false" (click)="buscarLocationPorNome(name.value)"></button>
+          </div>
+        </div>
+      </p-panel>
       <p-panel header="Locations" [toggleable]="true" styleClass="mt-5">
         <p-table [value]="locations" [tableStyle]="{'min-width': '60rem'}">
 
@@ -23,6 +32,13 @@
                   <td>{{locations.dimension}}</td>
                   <td>{{locations.created}}</td>
               </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="5" class="text-center">
+                <p>Nenhum dado encontrado.</p>
+              </td>
+            </tr>
           </ng-template>
           <ng-template pTemplate="summary">
               <div class="flex align-items-center justify-content-between">
