@@ -4,7 +4,7 @@
   <div class="html image-background mt-5">
     <div class="body m-3">
       <p-panel header="Filter" [toggleable]="true" styleClass="mt-5">
-        <div class="m-3">
+        <div class="m-auto">
           <div class="form-group m-1 d-flex">
             <input pInput class="form-control" type="text" #name name="name" id="name">
             <button pButton label="Buscar" class="btn-color ml-5"
@@ -16,6 +16,8 @@
         <p-table [value]="locations" [tableStyle]="{'min-width': '60rem'}">
 
           <ng-template pTemplate="header">
+            <p-button type="button" pTooltip="Página anterior" (click)="buscarPaginaAnterior(page)" icon="pi pi-angle-left" styleClass="p-button-text"></p-button>
+            <p-button type="button" pTooltip="Próxima página" (click)="buscarProximaPagina(page)" icon="pi pi-angle-right" styleClass="p-button-text"></p-button>
               <tr>
                   <th>Name</th>
                   <th>Residents</th>
@@ -26,7 +28,7 @@
           </ng-template>
           <ng-template pTemplate="body" let-locations>
               <tr>
-                  <td style="cursor:pointer;" [routerLink]="['/location',buscarInformacoesPorIf(locations.id)]" pTooltip="Ver os residentes" tooltipPosition="top">{{locations.name}}</td>
+                  <td style="cursor:pointer;" [routerLink]="['/location',buscarInformacoesPorId(locations.id)]" pTooltip="Ver os residentes" tooltipPosition="top">{{locations.name}}</td>
                   <td>{{locations.residents.length}}</td>
                   <td>{{locations.type}}</td>
                   <td>{{locations.dimension}}</td>
