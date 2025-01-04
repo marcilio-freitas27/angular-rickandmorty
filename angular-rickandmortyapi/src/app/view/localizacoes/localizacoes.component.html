@@ -13,17 +13,22 @@
         </div>
       </p-panel>
       <p-panel header="Locations" [toggleable]="true" styleClass="mt-5">
-        <p-table [value]="locations" [tableStyle]="{'min-width': '60rem'}">
+        <p-table [columns]="cols"[value]="locations" [tableStyle]="{'min-width': '60rem'}"
+        [paginator]="true"
+        [rows]="20"
+        [totalRecords]="totalRecords"
+        [showCurrentPageReport]="true"
+        [loading]="loading"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [rowsPerPageOptions]="[20, 25, 50]">
 
-          <ng-template pTemplate="header">
+          <ng-template pTemplate="header" let-columns>
             <p-button type="button" pTooltip="Página anterior" (click)="buscarPaginaAnterior(page)" icon="pi pi-angle-left" styleClass="p-button-text"></p-button>
             <p-button type="button" pTooltip="Próxima página" (click)="buscarProximaPagina(page)" icon="pi pi-angle-right" styleClass="p-button-text"></p-button>
               <tr>
-                  <th>Name</th>
-                  <th>Residents</th>
-                  <th>Type</th>
-                  <th>Dimension</th>
-                  <th>Created</th>
+                  <th *ngFor="let col of columns">
+                    {{ col.header }}
+                  </th>
               </tr>
           </ng-template>
           <ng-template pTemplate="body" let-locations>

@@ -10,8 +10,10 @@ import {Location} from './../../models/location.model';
 export class LocalizacoesComponent {
 
   locations: Location[];
+  cols!: any[];
   name!: string;
   page!: number;
+  pages!:number;
   totalRecords: number = 0;
   loading: boolean = false;
   constructor(
@@ -19,11 +21,18 @@ export class LocalizacoesComponent {
   ){
     this.locations = [];
     this.page = 1;
+    this.cols = [];
   }
 
   ngOnInit(){
-    this.buscarLocalizacoes();
     this.buscarLocationPorPagina(this.page);
+    this.cols = [
+      { field: 'name', header: 'Name' },
+      { field: 'residents', header: 'Residents' },
+      { field: 'type', header: 'Type' },
+      { field: 'dimension', header: 'Dimension' },
+      { field: 'created', header: 'Created' }
+    ];
   }
 
   buscarLocalizacoes():void{
@@ -33,7 +42,7 @@ export class LocalizacoesComponent {
           this.locations = data.results;
         },
         error: (err: any) => {
-
+          console.error(err.status,err.error.error);
         }
       }
     )
@@ -63,13 +72,14 @@ export class LocalizacoesComponent {
     this.apiService.buscarLocationPorPagina(page).subscribe({
       next: (data: any)=> {
         this.locations = data.results;
-        this.totalRecords = data.info.pages;
+        this.totalRecords = data.info.count;
+        this.pages = data.info.pages;
       }
     })
   }
 
   buscarProximaPagina(page:number){
-    if(page < this.totalRecords){
+    if(page < this.pages){
       page += 1;
       this.page += 1;
     }
