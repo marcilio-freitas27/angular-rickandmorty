@@ -6,6 +6,7 @@
     <div class="m-3" id="dashboard">
       <p-panel header="Dashboard" [toggleable]="true" styleClass="mt-5">
         <div class="card shadow-2">
+          <h2>Dados por página: Personagens</h2>
           <div class="d-flex dash">
             <div class="m-3 w-75 text-center">
               <p-card header="Personagens" styleClass="bg bg-info">
@@ -44,7 +45,34 @@
             </div>
           </div>
         </div>
+        <div class="card shadow-2">
+          <h2>Totais</h2>
+          <div class="d-flex dash">
+            <div class="m-3 w-75 text-center">
+              <p-card header="Personagens" styleClass="bg bg-info">
+                  <h2 class="m-0 text-center">
+                    {{totalCharacters}}
+                  </h2>
+              </p-card>
+            </div>
+            <div class="m-3 w-75 text-center">
+              <p-card header="Localizações" styleClass="bg bg-dark text-white">
+                  <h2 class="m-0 text-center">
+                    {{totalLocations}}
+                  </h2>
+              </p-card>
+            </div>
+            <div class="m-3 w-75 text-center">
+              <p-card header="Episódios" styleClass="bg bg-light">
+                  <h2 class="m-0 text-center">
+                    {{totalEpisodes}}
+                  </h2>
+              </p-card>
+            </div>
+          </div>
+        </div>
         <div class="card shadow-2 card-size">
+          <h2>Tipos por página: Personagens</h2>
           <div class="d-flex chart-responsive display-chart justify-content-between">
             <div class="chart-size">
               <p-chart type="pie" [data]="dataGenero" [options]="optionsGenero" class="chart"></p-chart>
