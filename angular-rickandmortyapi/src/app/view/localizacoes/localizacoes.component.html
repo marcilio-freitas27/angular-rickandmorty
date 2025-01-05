@@ -4,15 +4,30 @@
   <div class="html image-background mt-5">
     <div class="body m-3">
       <p-panel header="Filter by name" [toggleable]="true" styleClass="mt-5">
-        <div class="m-auto">
-          <div class="form-group m-1 d-flex">
-            <input pInput class="form-control" type="text" #name name="name" id="name">
-            <button pButton label="Buscar" class="btn-color ml-5"
-            [disabled]="false" (click)="buscarLocationPorNome(name.value)"></button>
+        <div class="gap-10 p-fluid">
+          <div class="d-flex dash">
+            <div class="m-2 w-50">
+
+            </div>
+            <div class="m-2 w-50">
+              <input pInput class="form-control" type="text" #name name="name" id="name">
+            </div>
+            <div class="m-1">
+              <button pButton label="Buscar" class="btn-color"
+              [disabled]="false" (click)="buscarLocationPorNome(name.value)"></button>
+            </div>
+            <div class="m-2 w-50">
+
+            </div>
           </div>
         </div>
       </p-panel>
-      <p-panel [toggleable]="true" styleClass="mt-5">
+      <div *ngIf="isLoading" class="mt-5 p-5 d-flex justify-content-center">
+        <p-progressSpinner>
+          <p class="text-center mt-2">Carregando...</p>
+        </p-progressSpinner>
+      </div>
+      <p-panel [toggleable]="true" styleClass="mt-5" *ngIf="!isLoading">
         <ng-template pTemplate="header">
           <div class="row col-md-12">
             <div class="col-md-5 mt-2">

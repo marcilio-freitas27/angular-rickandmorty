@@ -31,16 +31,14 @@
           </p-panel>
       </div>
 
-      <div id="buscarFiltro" class="display-spinner">
-        <button class="btn btn-primary" type="button" disabled>
-          <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-          <span role="status"> Buscando filtros...</span>
-        </button>
-      </div>
-
       <div class="m-3">
         <h2 id="personagens"></h2>
-        <p-panel [toggleable]="true">
+        <div *ngIf="isLoading" class="mt-5 p-5 d-flex justify-content-center">
+          <p-progressSpinner>
+            <p class="text-center mt-2">Carregando...</p>
+          </p-progressSpinner>
+        </div>
+        <p-panel [toggleable]="true" *ngIf="!isLoading">
           <ng-template pTemplate="header">
             <div class="row col-md-12">
               <div class="col-md-5 mt-2">

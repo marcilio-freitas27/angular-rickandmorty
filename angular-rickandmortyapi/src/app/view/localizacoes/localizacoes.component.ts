@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { ApiService } from '../../services/api.service';
-import { Location } from './../../models/location.model';
+import {Component} from '@angular/core';
+import {ApiService} from '../../services/api.service';
+import {Location} from './../../models/location.model';
+import {ToastUtil} from './../../util/toast.util';
 
 @Component({
   selector: 'app-localizacoes',
@@ -16,8 +17,10 @@ export class LocalizacoesComponent {
   pages!:number;
   totalRecords: number = 0;
   loading: boolean = false;
+  isLoading = false;
   constructor(
     public apiService: ApiService,
+    public toast: ToastUtil,
   ){
     this.locations = [];
     this.page = 1;
@@ -53,6 +56,8 @@ export class LocalizacoesComponent {
   }
 
   buscarLocationPorNome(name: string){
+    this.isLoading = true;
+    this.simularCarregamento();
     this.apiService.buscarLocalizacoesPorNome(name).subscribe({
       next: (data: any) => {
         if(name){
@@ -74,6 +79,9 @@ export class LocalizacoesComponent {
         this.locations = data.results;
         this.totalRecords = data.info.count;
         this.pages = data.info.pages;
+        this.toast.carregarDadosSucesso();
+      },error: ()=>{
+        this.toast.carregarDadosFalha();
       }
     })
   }
@@ -93,5 +101,12 @@ export class LocalizacoesComponent {
     }
     this.buscarLocationPorPagina(page);
   }
+
+  simularCarregamento() {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 2000); // Simula 2 segundos de carregamento
+  }
+
 
 }

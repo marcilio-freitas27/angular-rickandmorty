@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Character } from 'src/app/models/character.model';
-import { BuscarPersonagensFilter } from 'src/app/models/filter/buscar-personagens.filter';
-import { ApiService } from 'src/app/services/api.service';
-import { LoginService } from 'src/app/services/login.service';
-import { ChartUtil } from 'src/app/util/chart.util';
-import { ToastUtil } from 'src/app/util/toast.util';
+import {Component,OnInit} from '@angular/core';
+import {Character} from 'src/app/models/character.model';
+import {BuscarPersonagensFilter} from 'src/app/models/filter/buscar-personagens.filter';
+import {ApiService} from 'src/app/services/api.service';
+import {LoginService} from 'src/app/services/login.service';
+import {ChartUtil} from 'src/app/util/chart.util';
+import {ToastUtil} from 'src/app/util/toast.util';
 
 @Component({
   selector: 'app-lista',
@@ -28,7 +28,7 @@ export class ListaComponent implements OnInit {
   pages!:number;
   totalRecords: number = 0;
   loading: boolean = false;
-
+  isLoading = false;
   constructor(
     private api: ApiService,
     private loginService: LoginService,
@@ -74,16 +74,8 @@ export class ListaComponent implements OnInit {
   }
 
   async personagensFiltrados(personagens: Character[], filtro: BuscarPersonagensFilter):Promise<void>{
-    // let time = setTimeout(()=>{
-    //   let buscarSpinner = document.getElementById("buscarFiltro") as HTMLElement;
-    //   let body = document.getElementById("body") as HTMLElement;
-    //   buscarSpinner.style.display = "flex";
-    //   buscarSpinner.style.justifyContent = "center";
-    //   buscarSpinner.style.zIndex = "2";
-    //   body.style.zIndex = "1";
-    //   body.style.backgroundColor = "rgba(0,0,0,0.2)";
-    // }, 5);
-
+    this.isLoading = true;
+    this.simularCarregamento();
     await new Promise(resolve => setTimeout(resolve, 10));
     this.filteredCharacters = this.filtrarPersonagens(personagens, filtro)
     // clearTimeout(time);
@@ -154,5 +146,11 @@ export class ListaComponent implements OnInit {
     }
     this.buscarPersonagensPorPagina(page);
   }
+  simularCarregamento() {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 2000); // Simula 2 segundos de carregamento
+  }
+
 
 }

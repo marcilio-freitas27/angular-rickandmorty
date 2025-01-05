@@ -1,79 +1,86 @@
 
-<app-menu></app-menu>
-<body>
-  <div class="html image-background mt-5">
+<html>
+  <app-menu></app-menu>
+  <body>
+    <div class="html image-background mt-5" >
+      <div *ngIf="isLoading" class="mt-5 p-5 d-flex justify-content-center">
+        <p-progressSpinner>
+          <p class="text-center mt-2">Carregando...</p>
+        </p-progressSpinner>
+      </div>
       <div class="card">
-        <p-dataView
+        <p-dataView *ngIf="!isLoading;"
           [value]="residents"
           [layout]="layout"
         >
-          <ng-template pTemplate="header">
-            <div class="flex justify-content-end mt-5">
-              <!-- Botões para alternar layout -->
-              <button
+            <ng-template pTemplate="header">
+              <div class="flex justify-content-end mt-5">
+                <!-- Botões para alternar layout -->
+                <button
+                    type="button"
+                    pButton
+                    label="Voltar"
+                    (click)="voltar()"
+                    class="ml-2 btn-color rounded text-black active"
+                    style="position: absolute;
+                    left: 0;"
+                  ></button>
+                <button
                   type="button"
                   pButton
-                  label="Voltar"
-                  (click)="voltar()"
+                  label="List"
+                  icon="pi pi-bars"
+                  (click)="layout = 'list'"
                   class="ml-2 btn-color rounded text-black active"
-                  style="position: absolute;
-                  left: 0;"
+                  [class.p-button-primary]="layout === 'list'"
                 ></button>
-              <button
-                type="button"
-                pButton
-                label="List"
-                icon="pi pi-bars"
-                (click)="layout = 'list'"
-                class="ml-2 btn-color rounded text-black active"
-                [class.p-button-primary]="layout === 'list'"
-              ></button>
-              <button
-                type="button"
-                pButton
-                label="Grid"
-                icon="pi pi-th-large"
-                class="ml-2 btn-color rounded text-black active"
-                (click)="layout = 'grid'"
-                [class.p-button-primary]="layout === 'grid'"
-              ></button>
-            </div>
-          </ng-template>
-
-          <!-- Exibição em lista -->
-          <ng-template let-resident pTemplate="listItem">
-            <div class="col-12">
-              <div class="flex align-items-center justify-content-center p-3">
-                <img
-                  [src]="resident.image"
-                  [alt]="resident.name"
-                  class="rounded-circle w-25 h-25"
-                />
+                <button
+                  type="button"
+                  pButton
+                  label="Grid"
+                  icon="pi pi-th-large"
+                  class="ml-2 btn-color rounded text-black active"
+                  (click)="layout = 'grid'"
+                  [class.p-button-primary]="layout === 'grid'"
+                ></button>
               </div>
-              <div class="flex align-items-center justify-content-center p-3">
-                <h5>{{ resident.name }}</h5>
-              </div>
-            </div>
-          </ng-template>
+            </ng-template>
 
-          <!-- Exibição em grade -->
-          <ng-template let-resident pTemplate="gridItem">
-            <div class="grid-layout">
-              <!-- Cada item individual -->
-              <div class="grid-item">
-                <img [src]="resident.image" [alt]="resident.name" />
-                <h5>{{ resident.name }}</h5>
+            <!-- Exibição em lista -->
+            <ng-template let-resident pTemplate="listItem">
+              <div class="col-12">
+                <div class="flex align-items-center justify-content-center p-3">
+                  <img
+                    [src]="resident.image"
+                    [alt]="resident.name"
+                    class="rounded-circle w-25 h-25"
+                  />
+                </div>
+                <div class="flex align-items-center justify-content-center p-3">
+                  <h5>{{ resident.name }}</h5>
+                </div>
               </div>
-            </div>
-          </ng-template>
-          <ng-template pTemplate="emptymessage">
+            </ng-template>
 
-          </ng-template>
-        </p-dataView>
-      </div>
-  </div>
-  <app-toast></app-toast>
-  <app-footer></app-footer>
-</body>
+            <!-- Exibição em grade -->
+            <ng-template let-resident pTemplate="gridItem">
+              <div class="grid-layout">
+                <!-- Cada item individual -->
+                <div class="grid-item">
+                  <img [src]="resident.image" [alt]="resident.name" />
+                  <h5>{{ resident.name }}</h5>
+                </div>
+              </div>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+
+            </ng-template>
+          </p-dataView>
+        </div>
+    </div>
+    <app-toast></app-toast>
+    <app-footer></app-footer>
+  </body>
+</html>
 
 

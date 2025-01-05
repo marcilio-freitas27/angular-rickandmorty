@@ -1,7 +1,12 @@
 <app-menu></app-menu>
 <body>
   <div class="p-5 mt-3">
-      <div class="card w-50 m-auto mt-5">
+    <div *ngIf="isLoading" class="mt-5 p-5 d-flex justify-content-center">
+      <p-progressSpinner>
+        <p class="text-center mt-2">Carregando...</p>
+      </p-progressSpinner>
+    </div>
+      <div class="card w-50 m-auto mt-5" *ngIf="!isLoading">
         <div class="card-header">
           <h5 class="card-title">{{character.name}}</h5>
         </div>

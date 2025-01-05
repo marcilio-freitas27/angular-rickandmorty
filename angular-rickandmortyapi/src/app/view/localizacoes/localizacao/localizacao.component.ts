@@ -1,10 +1,11 @@
-import { Location as locate } from '@angular/common';
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { forkJoin } from 'rxjs';
-import { Location } from 'src/app//models/location.model';
-import { Character } from 'src/app/models/character.model';
-import { ApiService } from 'src/app/services/api.service';
+import {Location as locate} from '@angular/common';
+import {Component} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {forkJoin} from 'rxjs';
+import {Location} from 'src/app//models/location.model';
+import {Character} from 'src/app/models/character.model';
+import {ApiService} from 'src/app/services/api.service';
+import {ToastUtil} from 'src/app/util/toast.util';
 
 @Component({
   selector: 'app-localizacao',
@@ -16,10 +17,12 @@ export class LocalizacaoComponent {
   location: Location;
   residents: Character[];
   layout: string = 'list';
+  isLoading = true;
   constructor(
     public apiService: ApiService,
      private active: ActivatedRoute,
      public locationService: locate,
+     public toast: ToastUtil,
   ){
     this.residents = [];
     this.location = {
@@ -35,8 +38,8 @@ export class LocalizacaoComponent {
 
   ngOnInit(){
     let id = this.active.snapshot.paramMap.get('id');
+    this.simularCarregamento();
     this.buscarLocalizacoesPorId(Number(id));
-
   }
 
   voltar():void{
@@ -50,7 +53,7 @@ export class LocalizacaoComponent {
         this.carregarResidentes();
       },
       error: (error) => {
-        console.error('Erro ao buscar localização:', error);
+        this.toast.carregarDadosFalha()
       }
     });
   }
@@ -65,9 +68,14 @@ export class LocalizacaoComponent {
         this.residents = characters;
       },
       error: (error) => {
-        console.error('Erro ao carregar residentes:', error);
+        this.toast.carregarDadosFalha()
       }
     });
   }
 
+  simularCarregamento() {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 2000); // Simula 2 segundos de carregamento
+  }
 }

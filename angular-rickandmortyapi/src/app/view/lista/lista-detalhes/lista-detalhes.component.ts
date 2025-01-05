@@ -1,10 +1,10 @@
-import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Character } from 'src/app/models/character.model';
-import { ApiService } from 'src/app/services/api.service';
-import { LoginService } from 'src/app/services/login.service';
-import { ToastUtil } from 'src/app/util/toast.util';
+import {Location} from '@angular/common';
+import {Component,OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {Character} from 'src/app/models/character.model';
+import {ApiService} from 'src/app/services/api.service';
+import {LoginService} from 'src/app/services/login.service';
+import {ToastUtil} from 'src/app/util/toast.util';
 
 @Component({
   selector: 'app-lista-detalhes',
@@ -14,7 +14,7 @@ import { ToastUtil } from 'src/app/util/toast.util';
 
 export class ListaDetalhesComponent implements OnInit {
   character!: Character;
-
+  isLoading = true;
   constructor(
     private api: ApiService,
     private active: ActivatedRoute,
@@ -47,6 +47,7 @@ export class ListaDetalhesComponent implements OnInit {
   ngOnInit() {
     this.buscarUsuarioLogado();
     let id = this.active.snapshot.paramMap.get('id');
+    this.simularCarregamento();
     this.buscarInformacoesPorId(Number(id));
   }
 
@@ -59,7 +60,6 @@ export class ListaDetalhesComponent implements OnInit {
       {
         next: (data: any) => {
           this.character = data;
-          this.toast.carregarDadosSucesso();
         },
         error: (err: any) => {
           this.toast.carregarDadosFalha()
@@ -70,6 +70,12 @@ export class ListaDetalhesComponent implements OnInit {
 
   voltar():void{
     this.location.back();
+  }
+
+  simularCarregamento() {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 2000); // Simula 2 segundos de carregamento
   }
 
 }
