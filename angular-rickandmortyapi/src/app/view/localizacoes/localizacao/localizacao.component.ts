@@ -1,10 +1,10 @@
-import {Location as locate} from '@angular/common';
-import {Component} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {forkJoin} from 'rxjs';
-import {Location} from 'src/app//models/location.model';
-import {Character} from 'src/app/models/character.model';
-import {ApiService} from 'src/app/services/api.service';
+import { Location as locate } from '@angular/common';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { forkJoin } from 'rxjs';
+import { Location } from 'src/app//models/location.model';
+import { Character } from 'src/app/models/character.model';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-localizacao',
@@ -57,7 +57,7 @@ export class LocalizacaoComponent {
 
   carregarResidentes(): void {
     const residentRequests = this.location.residents.map((url) =>
-      this.apiService.buscarPersonagemPorUrl(url)
+      this.apiService.buscarPersonagensPorUrl(url)
     );
 
     forkJoin(residentRequests).subscribe({

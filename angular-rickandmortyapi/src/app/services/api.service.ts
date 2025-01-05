@@ -15,7 +15,6 @@ export class ApiService {
   static ENDPOINT:string = "character";
   static LOCATION:string = "location";
   static EPISODE:string = "episode";
-  apiUrl:string = 'https://rickandmortyapi.com/api/location/';
 
   constructor(public http: HttpClient) {
     this.url = "https://rickandmortyapi.com/api/";
@@ -29,6 +28,10 @@ export class ApiService {
     return this.http.get<Character>(this.url + ApiService.ENDPOINT + "/" + id);
   }
 
+  buscarPersonagensPorPagina(page: number = 1):Observable<Character>{
+    return this.http.get<Character>(this.url + ApiService.ENDPOINT + "?page=" + page);
+  }
+
   buscarLocalizacoes():Observable<Location[]>{
     return this.http.get<Location[]>(this.url + ApiService.LOCATION);
   }
@@ -37,11 +40,11 @@ export class ApiService {
     return this.http.get<Location>(this.url + ApiService.LOCATION + "/" + id);
   }
 
-  buscarLocationPorNome(name: string):Observable<Location>{
+  buscarLocalizacoesPorNome(name: string):Observable<Location>{
     return this.http.get<Location>(this.url + ApiService.LOCATION + "?name=" + name);
   }
 
-  buscarLocationPorPagina(page: number = 1):Observable<Location>{
+  buscarLocalizacoesPorPagina(page: number = 1):Observable<Location>{
     return this.http.get<Location>(this.url + ApiService.LOCATION + "?page=" + page);
   }
 
@@ -53,7 +56,7 @@ export class ApiService {
     return this.http.get<Episode>(this.url + ApiService.EPISODE + "/" + id);
   }
 
-  buscarPersonagemPorUrl(url: string): Observable<Character> {
+  buscarPersonagensPorUrl(url: string): Observable<Character> {
     return this.http.get<Character>(url);
   }
 

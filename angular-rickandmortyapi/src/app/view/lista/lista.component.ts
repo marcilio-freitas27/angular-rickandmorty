@@ -24,6 +24,10 @@ export class ListaComponent implements OnInit {
   filteredCharacters!: Character[];
   responsiveOptions!:any[];
   largura!: number;
+  page!: number;
+  pages!:number;
+  totalRecords: number = 0;
+  loading: boolean = false;
 
   constructor(
     private api: ApiService,
@@ -38,11 +42,13 @@ export class ListaComponent implements OnInit {
     this.tipos = [];
     this.filtro = new BuscarPersonagensFilter();
     this.filteredCharacters = [];
+    this.page = 1;
   }
 
   ngOnInit(){
     this.buscarUsuarioLogado();
     this.buscarPersonagens();
+    this.buscarPersonagensPorPagina(this.page);
 
     if(localStorage.getItem('buscarPersonagensFilter') != null){
       this.filtro = JSON.parse(localStorage.getItem('buscarPersonagensFilter') || "");
@@ -77,7 +83,7 @@ export class ListaComponent implements OnInit {
     //   body.style.zIndex = "1";
     //   body.style.backgroundColor = "rgba(0,0,0,0.2)";
     // }, 5);
-    
+
     await new Promise(resolve => setTimeout(resolve, 10));
     this.filteredCharacters = this.filtrarPersonagens(personagens, filtro)
     // clearTimeout(time);
@@ -120,6 +126,33 @@ export class ListaComponent implements OnInit {
 
   buscarInformacoesPorIf(id:number):number{
     return id;
+  }
+
+  buscarPersonagensPorPagina(page: number){
+    this.api.buscarPersonagensPorPagina(page).subscribe({
+      next: (data: any)=> {
+        this.characters = data.results;
+        this.filteredCharacters = data.results;
+        this.totalRecords = data.info.count;
+        this.pages = data.info.pages;
+      }
+    })
+  }
+
+  buscarProximaPagina(page:number){
+    if(page < this.pages){
+      page += 1;
+      this.page += 1;
+    }
+    this.buscarPersonagensPorPagina(page);
+  }
+
+  buscarPaginaAnterior(page:number){
+    if(page > 1){
+      page -= 1;
+      this.page -= 1;
+    }
+    this.buscarPersonagensPorPagina(page);
   }
 
 }

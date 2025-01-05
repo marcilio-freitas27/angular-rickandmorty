@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
-import {ApiService} from '../../services/api.service';
-import {Location} from './../../models/location.model';
+import { Component } from '@angular/core';
+import { ApiService } from '../../services/api.service';
+import { Location } from './../../models/location.model';
 
 @Component({
   selector: 'app-localizacoes',
@@ -53,7 +53,7 @@ export class LocalizacoesComponent {
   }
 
   buscarLocationPorNome(name: string){
-    this.apiService.buscarLocationPorNome(name).subscribe({
+    this.apiService.buscarLocalizacoesPorNome(name).subscribe({
       next: (data: any) => {
         if(name){
           this.locations = data.results;
@@ -69,7 +69,7 @@ export class LocalizacoesComponent {
   }
 
   buscarLocationPorPagina(page: number){
-    this.apiService.buscarLocationPorPagina(page).subscribe({
+    this.apiService.buscarLocalizacoesPorPagina(page).subscribe({
       next: (data: any)=> {
         this.locations = data.results;
         this.totalRecords = data.info.count;
