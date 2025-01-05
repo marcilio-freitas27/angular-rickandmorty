@@ -44,3 +44,14 @@ Thumbs.db
 # docsify internal
 
 /docs
+
+
+# dist
+
+.angular/
+.editorconfig
+/src
+*.json
+*.spec.json
+*.app.json
+*.md
