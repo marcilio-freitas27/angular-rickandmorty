@@ -1,15 +1,14 @@
-import {Component,OnInit} from '@angular/core';
+import {AfterViewInit,Component,OnInit,Renderer2} from '@angular/core';
 import {NavigationEnd,Router} from '@angular/router';
 import {ApiService} from 'src/app/services/api.service';
 import {LoginService} from 'src/app/services/login.service';
-
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent implements OnInit, AfterViewInit  {
 
   usuarioLogado!:string | null;
   usuarioImagem!: string;
@@ -18,6 +17,7 @@ export class MenuComponent implements OnInit {
     private loginService: LoginService,
     private api: ApiService,
     private router: Router,
+    private renderer: Renderer2
   ) {
 
    }
@@ -30,7 +30,46 @@ export class MenuComponent implements OnInit {
         window.scrollTo(0, 0);
       }
     });
-    
+
+  }
+  ngAfterViewInit() {
+    // Escuta o evento de abertura do offcanvas
+    const offcanvasElement = document.getElementById('offcanvasRight');
+    if (offcanvasElement) {
+      offcanvasElement.addEventListener('shown.bs.offcanvas', this.removeExtraBackdrops);
+      offcanvasElement.addEventListener('shown.bs.offcanvas', this.handleBodyState.bind(this, 'open'));
+      offcanvasElement.addEventListener('hidden.bs.offcanvas', this.handleBodyState.bind(this, 'close'));
+      offcanvasElement.addEventListener('hidden.bs.offcanvas', this.removeExtraBackdrops);
+    }
+  }
+
+  removeExtraBackdrops() {
+    // Obtém todas as backdrops
+    const backdrops = document.querySelectorAll('.offcanvas-backdrop');
+    if (backdrops.length > 1) {
+      // Remove todas as backdrops extras, mantendo apenas uma
+      backdrops.forEach((backdrop, index) => {
+        if (index > 0) {
+          backdrop.remove();
+        }
+      });
+    }
+  }
+
+  handleBodyState(action: 'open' | 'close') {
+    const body = document.body;
+
+    if (action === 'open') {
+      // Garante que apenas um estilo correto seja aplicado
+      this.renderer.setStyle(body, 'overflow', 'hidden');
+      this.renderer.setStyle(body, 'paddingRight', '34px'); // Ajuste para seu caso
+    } else if (action === 'close') {
+      // Remove os atributos que causam o problema
+      this.renderer.removeAttribute(body, 'data-bs-overflow');
+      this.renderer.removeAttribute(body, 'data-bs-padding-right');
+      this.renderer.removeStyle(body, 'overflow');
+      this.renderer.removeStyle(body, 'paddingRight');
+    }
   }
 
   buscarImagens(){

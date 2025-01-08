@@ -117,3 +117,20 @@ body{
   justify-items: center;
   justify-content: center;
 }
+
+.offcanvas-backdrop {
+  z-index: 1040; /* Certifique-se de que o z-index seja menor que o do offcanvas */
+}
+
+.offcanvas-backdrop {
+  display: none !important; /* Evita múltiplos backdrops */
+}
+
+.offcanvas-backdrop.show {
+  display: block !important;
+}
+
+.offcanvas-backdrop.fade {
+  display: block !important;
+}
+
