@@ -56,6 +56,10 @@ export class ApiService {
     return this.http.get<Episode>(this.url + ApiService.EPISODE + "/" + id);
   }
 
+  buscarEpisodiosPorPagina(page: number = 1):Observable<Episode>{
+    return this.http.get<Episode>(this.url + ApiService.EPISODE + "?page=" + page);
+  }
+
   buscarPersonagensPorUrl(url: string): Observable<Character> {
     return this.http.get<Character>(url);
   }
