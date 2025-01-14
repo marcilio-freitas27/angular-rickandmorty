@@ -35,7 +35,7 @@ import {EpisodiosComponent} from './view/episodios/episodios.component';
 import {LocalizacaoComponent} from './view/localizacoes/localizacao/localizacao.component';
 import {LocalizacoesComponent} from './view/localizacoes/localizacoes.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-
+import { GalleriaModule } from 'primeng/galleria';
 
 @NgModule({
   declarations: [
@@ -73,8 +73,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     CarouselModule,
     TooltipModule,
     TableModule,
-    ProgressSpinnerModule
-
+    ProgressSpinnerModule,
+    GalleriaModule,
   ],
   providers: [DataViewLayoutOptions],
   bootstrap: [AppComponent]

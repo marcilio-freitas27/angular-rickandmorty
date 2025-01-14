@@ -47,17 +47,16 @@ export class EpisodiosComponent {
     }
   }
 
-  buscarEpisodiosPorPagina(page: number){
-    this.apiService.buscarEpisodiosPorPagina(page).subscribe({
-      next: (data: any)=> {
-        this.episodes = data.results;
-        this.totalRecords = data.info.count;
-        this.pages = data.info.pages;
-        this.toast.carregarDadosSucesso();
-      },error: ()=>{
-        this.toast.carregarDadosFalha();
-      }
-    })
+  async buscarEpisodiosPorPagina(page: number){
+    try {
+      const response = await getEpisodes({ page: page});
+      this.episodes = response.data.results || [];
+      this.totalRecords = response.data.info!.count;
+      this.pages = response.data.info!.pages;
+      this.toast.carregarDadosSucesso();
+    } catch (error) {
+      this.toast.carregarDadosFalha();
+    }
   }
 
   buscarProximaPagina(page:number){
@@ -76,10 +75,32 @@ export class EpisodiosComponent {
     this.buscarEpisodiosPorPagina(page);
   }
 
+  buscarInformacoesPorId(id:number):number{
+    return id;
+  }
+
+  async buscarEpisodioPorCodigo(episode: string){
+    this.isLoading = true;
+    this.simularCarregamento();
+    const response = await getEpisodes({
+      episode: episode,
+    })
+    try{
+      if(episode){
+        this.episodes = response.data.results || [];
+      }else{
+        this.buscarEpisodiosViaApiJs();
+      }
+    }catch(error){
+      this.toast.carregarDadosFalha();
+      this.episodes = [];
+    }
+  }
+
   simularCarregamento() {
     setTimeout(() => {
       this.isLoading = false;
-    }, 2000); // Simula 2 segundos de carregamento
+    }, 2000);
   }
 
 }
